@@ -1,20 +1,22 @@
-body1 /*titulo */{
+.body1 /*titulo */{
     display: flex;
     align-items: flex-start;
     justify-content: center;
     
 }
 
-body2 /* iniciar sesion */{
+.body2 /* iniciar sesion */{
     display: flex;
     align-items: center;
     justify-content:center;
-    
+    margin-top: 150px;
+   
 }
 
-body3 /* crear cuenta*/{
-    display: flex;
+.body3 /* crear cuenta*/{
+     display: flex;
     align-items: flex-end;
     justify-content: center;
-    
+    margin-top: 150px; /* lo empuja hacia abajo, ajustá el número a gusto */
+
 }
