@@ -1,22 +1,22 @@
-.body1 /*titulo */{
+.body1 {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    
-}
-
-.body2 /* iniciar sesion */{
-    display: flex;
+    justify-content: center; /* Centra el título horizontalmente */
     align-items: center;
-    justify-content:center;
-    margin-top: 150px;
-   
+    margin-top: 50px;       /* Espacio superior para despegarlo del borde */
 }
 
-.body3 /* crear cuenta*/{
-     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    margin-top: 150px; /* lo empuja hacia abajo, ajustá el número a gusto */
+/* Capa 2: Iniciar sesión */
+.body2 {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center;
+    margin-top: 40px;        /* Distancia razonable respecto al título */
+}
 
+/* Capa 3: Crear cuenta */
+.body3 {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center;
+    margin-top: 20px;        /* Distancia razonable respecto al botón superior */
 }
