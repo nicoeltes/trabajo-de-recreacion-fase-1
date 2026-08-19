@@ -1,77 +1,102 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #299000;
+}
+
 .body1 {
     display: flex;
-    justify-content: center; /* Centra el título horizontalmente */
+    justify-content: center;
     align-items: center;
-    margin-top: 50px;       /* Espacio superior para despegarlo del borde */
+    margin-top: 50px;
 }
 
 .body2 {
     position: fixed;
     top: 50%;
-    right: 550px;
-    transform: translateY(-50%); /* centra verticalmente respecto a su propia altura */
-    font-size: px;
+    right: 350px;
+    transform: translateY(-50%);
 }
 
-/* Capa 3: perfil -> arriba a la derecha */
 .body3 {
     position: fixed;
     top: 40px;
     right: 60px;
 }
 
-/* boton mapa*/
 .body4 {
     position: fixed;
     top: 50%;
-    right: 750px;
-    transform: translateY(-50%); 
+    right: 700px;
+    transform: translateY(-50%);
 }
 
 .Recetas {
-    width: 160px;
-    height: 45px;
-    font-size: 16px;
-    background-color: #2196F3;
+    width: 280px;
+    height: 130px;
+    font-size: 32px;
+    background-color: #014A00;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .Recetas:hover {
-    background-color: #1976D2;
-}
-
-.perfil {
-    width: 160px;
-    height: 45px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.perfil:hover {
-    background-color: #388E3C;
+    background-color: #dee3e7;
+    color: #014A00;
 }
 
 .mapa {
-    width: 160px;
-    height: 45px;
-    font-size: 16px;
-    background-color: #FF9800;
+    width: 280px;
+    height: 130px;
+    font-size: 32px;
+    background-color: #014A00;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .mapa:hover {
-    background-color: #073a0e;
+    background-color: rgb(189, 188, 188);
+    color: #014A00;
+}
+
+
+
+.perfil {
+    width: 160px;
+    height: 45px;
+    font-size: 16px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.perfil:hover {
+    color: rgb(189, 188, 188);
+}
+
+
+
+h1 {
+    width: 310px;
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    background-color: #92F980;
+    color: #1b5e20;
+    border-radius: 20px;
+    margin: 0;
 }
