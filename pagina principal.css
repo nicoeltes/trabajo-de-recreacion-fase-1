@@ -1,0 +1,21 @@
+.body1 {
+    display: flex;
+    justify-content: center; /* Centra el título horizontalmente */
+    align-items: center;
+    margin-top: 50px;       /* Espacio superior para despegarlo del borde */
+}
+
+/* Capa 2: recetas */
+.body2 {
+    margin-top: 40px; 
+    
+    
+}
+
+/* Capa 3: Crear cuenta */
+.body3 {
+margin-left: 20px;  
+align-items: flex-start ;     
+
+
+}
