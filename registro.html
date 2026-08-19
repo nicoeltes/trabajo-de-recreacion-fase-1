@@ -3,30 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear cuenta</title>
+    <title>Registro</title>
 </head>
 <body>
-    <h1>Crear cuenta de comida por gusto</h1>
+    <h1>Crear cuenta</h1>
 
-    <form id="crearCuentaForm">
-        <input required type="text" id="usuario" placeholder="Email o nombre de usuario">
+    <form id="registroForm">
+        <input required type="text" id="usuario" placeholder="Nombre de usuario">
         <br><br>
-        <input required type="password" id="password" placeholder="Crear contraseña">
+        <input required type="password" id="password" placeholder="Contraseña">
         <br><br>
-        <input required type="password" id="confirmarPassword" placeholder="Confirmar contraseña">
-        <br><br>
-        <button type="submit">Crear cuenta</button>
+        <button type="submit">Registrarse</button>
     </form>
 
     <p id="mensaje"></p>
 
-    <br>
-    <a href=".html">
-        <button>Volver</button>
-    </a>
-
     <script>
-        const form = document.getElementById('crearCuentaForm');
+        const form = document.getElementById('registroForm');
         const mensaje = document.getElementById('mensaje');
 
         form.addEventListener('submit', function (e) {
@@ -34,32 +27,29 @@
 
             const usuario = document.getElementById('usuario').value;
             const password = document.getElementById('password').value;
-            const confirmarPassword = document.getElementById('confirmarPassword').value;
 
-            if (password !== confirmarPassword) {
-                mensaje.textContent = "Las contraseñas no coinciden.";
-                mensaje.style.color = "red";
-                return;
-            }
-
+            // Traer usuarios ya guardados (o array vacío si no hay ninguno)
             const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
+            // Verificar si el usuario ya existe
             const yaExiste = usuarios.some(u => u.usuario === usuario);
+
             if (yaExiste) {
                 mensaje.textContent = "Ese usuario ya existe.";
                 mensaje.style.color = "red";
                 return;
             }
 
+            // Agregar el nuevo usuario al array
             usuarios.push({ usuario, password });
+
+            // Guardar el array actualizado en localStorage
             localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-            mensaje.textContent = "¡Cuenta creada con éxito!";
+            mensaje.textContent = "¡Usuario registrado con éxito!";
             mensaje.style.color = "green";
 
-            setTimeout(() => {
-                window.location.href = "pagina principal.html";
-            }, 1000);
+            form.reset(); // limpia el formulario
         });
     </script>
 </body>

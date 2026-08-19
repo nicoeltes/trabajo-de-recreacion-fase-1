@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +7,49 @@
 </head>
 <body>
     <h1>Iniciar sesión</h1>
-    <input type="text" placeholder="Email o nombre de usuario">
-     <br><br> 
-     <input type="password" placeholder="Contraseña"> 
-    <br><br>
-     <a href="pagina principal.html">
-    <button>Iniciar sesión</button>
-    </a>
-    <br><br>
+
+    <form id="loginForm">
+        <input required type="text" id="usuario" placeholder="Email o nombre de usuario">
+        <br><br>
+        <input required type="password" id="password" placeholder="Contraseña">
+        <br><br>
+        <button type="submit">continuar</button>
+    </form>
+
+    <p id="mensaje"></p>
+
+    <br>
     <a href=".html">
-    <button>Volver</button>
+        <button>Volver</button>
     </a>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const mensaje = document.getElementById('mensaje');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // evita que la página se recargue
+
+            const usuario = document.getElementById('usuario').value;
+            const password = document.getElementById('password').value;
+
+            // Traer usuarios guardados (si no hay ninguno, array vacío)
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            // Buscar si existe ese usuario con esa contraseña
+            const usuarioValido = usuarios.find(
+                u => u.usuario === usuario && u.password === password
+            );
+
+            if (usuarioValido) {
+                mensaje.textContent = "¡Bienvenido!";
+                mensaje.style.color = "green";
+                window.location.href = "pagina principal.html";
+            } else {
+                mensaje.textContent = "Usuario o contraseña incorrectos.";
+                mensaje.style.color = "red";
+            }
+        });
+    </script>
 </body>
 </html>
