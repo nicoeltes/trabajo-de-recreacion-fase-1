@@ -5,17 +5,73 @@
     margin-top: 50px;       /* Espacio superior para despegarlo del borde */
 }
 
-/* Capa 2: recetas */
 .body2 {
-    margin-top: 40px; 
-    
-    
+    position: fixed;
+    top: 50%;
+    right: 550px;
+    transform: translateY(-50%); /* centra verticalmente respecto a su propia altura */
+    font-size: px;
 }
 
-/* Capa 3: Crear cuenta */
+/* Capa 3: perfil -> arriba a la derecha */
 .body3 {
-margin-left: 20px;  
-align-items: flex-start ;     
+    position: fixed;
+    top: 40px;
+    right: 60px;
+}
 
+/* boton mapa*/
+.body4 {
+    position: fixed;
+    top: 50%;
+    right: 750px;
+    transform: translateY(-50%); 
+}
 
+.Recetas {
+    width: 160px;
+    height: 45px;
+    font-size: 16px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Recetas:hover {
+    background-color: #1976D2;
+}
+
+.perfil {
+    width: 160px;
+    height: 45px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.perfil:hover {
+    background-color: #388E3C;
+}
+
+.mapa {
+    width: 160px;
+    height: 45px;
+    font-size: 16px;
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mapa:hover {
+    background-color: #073a0e;
 }
