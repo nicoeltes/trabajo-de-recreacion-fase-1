@@ -1,8 +1,15 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #299000;
+}
+
 .body1 {
     display: flex;
-    justify-content: center; /* Centra el título horizontalmente */
-    align-items: center;
-    margin-top: 50px;       /* Espacio superior para despegarlo del borde */
+    justify-content: flex-start; /* Centra el título horizontalmente */
+    align-items: flex-start;
+   /* margin-top: 50px;*/       /* Espacio superior para despegarlo del borde */
 }
 
 /* Capa 2: Iniciar sesión */
@@ -10,7 +17,7 @@
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center;
-    margin-top: 40px;        /* Distancia razonable respecto al título */
+    margin-top: 90px;        /* Distancia razonable respecto al título */
 }
 
 /* Capa 3: Crear cuenta */
@@ -19,4 +26,45 @@
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center;
     margin-top: 20px;        /* Distancia razonable respecto al botón superior */
+}
+
+h1 {
+width: 200px;
+height: 100px;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+font-size: 30px;
+font-weight: 200px;
+background-color:#FCEDFF;
+color: #1d1f1d;
+border-radius: 30px;
+margin-top: -21px;
+margin-left: -16px;
+}
+
+
+.iniciarsesion{
+    width: 280px;
+    height: 130px;
+    font-size: 32px;
+    background-color: #014A00;
+    color: white;
+    border-color:none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.crearcuenta{
+    width: 280px;
+    height: 130px;
+    font-size: 32px;
+    background-color: #014A00;
+    color: white;
+    border-color: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
 }
