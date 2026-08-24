@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #4a9c2d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    position: relative;
+}
+
+/* Logo arriba a la izquierda */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #163d17;
+    line-height: 1.1;
+}
+
+/* Título "Iniciar sesión" como caja verde oscuro */
+h1 {
+    background-color: #163d17;
+    color: white;
+    font-weight: 300;
+    font-size: 40px;
+    text-align: center;
+    padding: 25px 60px;
+    border-radius: 12px;
+    margin-bottom: 60px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+form input {
+    width: 320px;
+    max-width: 80vw;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    background: transparent;
+    border: 1px solid #cdeecb;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+form input::placeholder {
+    color: #e5f5e0;
+}
+
+/* Botones (continuar y volver) */
+button {
+    background-color: #163d17;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    margin: 30px 15px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0f2c10;
+}
+
+/*  "Volver"  */
+a button {
+    margin-top: -10px;
+}
+
+/* Mensaje de error/éxito */
+#mensaje {
+    color: white;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Contenedor para alinear "Volver" y "Continuar" en la misma fila */
+a {
+    text-decoration: none;
+}
