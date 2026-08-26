@@ -29,42 +29,65 @@ html, body {
 }
 
 h1 {
-width: 200px;
-height: 100px;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-font-size: 30px;
-font-weight: 200px;
-background-color:#FCEDFF;
-color: #1d1f1d;
-border-radius: 30px;
-margin-top: -21px;
-margin-left: -16px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 200;
+    background-color: #FCEDFF;
+    color: #1d1f1d;
+    border-radius: 30px;
+    margin-top: -21px;
+    margin-left: -16px;
+    /* Transición para el título */
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+/* Hover para el título */
+h1:hover {
+    background-color: #ffffff;
+    transform: scale(1.03); /* Crece ligeramente al pasar el mouse */
+}
 
-.iniciarsesion{
+.iniciarsesion {
     width: 280px;
     height: 130px;
     font-size: 32px;
     background-color: #014A00;
     color: white;
-    border-color:none;
+    border: none;
     border-radius: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    /* Transiciones suaves para color, elevación y sombra */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.crearcuenta{
+/* Hover para Iniciar Sesión */
+.iniciarsesion:hover {
+    background-color: #027400; /* Verde más claro */
+    transform: translateY(-4px); /* Eleva el botón */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Agrega sombra */
+}
+
+.crearcuenta {
     width: 280px;
     height: 130px;
     font-size: 32px;
     background-color: #014A00;
     color: white;
-    border-color: none;
+    border: none;
     border-radius: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease; 
+    /* Transiciones suaves para color, elevación y sombra */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover para Crear Cuenta */
+.crearcuenta:hover {
+    background-color: #027400; /* Verde más claro */
+    transform: translateY(-4px); /* Eleva el botón */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Agrega sombra */
 }

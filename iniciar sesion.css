@@ -25,6 +25,15 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
+    /* Transición para suave animación */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover en el logo */
+.logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .logo img {
@@ -39,7 +48,7 @@ body {
     line-height: 1.1;
 }
 
-/* Título "Iniciar sesión" como caja verde oscuro */
+/* Título "Iniciar sesión" */
 h1 {
     background-color: #163d17;
     color: white;
@@ -49,6 +58,14 @@ h1 {
     padding: 25px 60px;
     border-radius: 12px;
     margin-bottom: 60px;
+    /* Transición suave para el título */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover en el título */
+h1:hover {
+    background-color: #1f5420;
+    transform: scale(1.02);
 }
 
 form {
@@ -69,6 +86,20 @@ form input {
     color: white;
     font-size: 16px;
     outline: none;
+    /* Transiciones para cambios de color y foco */
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover en los campos de texto */
+form input:hover {
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Efecto al hacer clic/escribir dentro del input */
+form input:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 form input::placeholder {
@@ -85,13 +116,24 @@ button {
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
+    /* Transiciones fluidas para hover */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
+/* Hover en los botones */
 button:hover {
     background-color: #0f2c10;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/*  "Volver"  */
+/* Efecto visual al presionar el botón */
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* "Volver" */
 a button {
     margin-top: -10px;
 }
@@ -103,7 +145,7 @@ a button {
     margin-top: 15px;
 }
 
-/* Contenedor para alinear "Volver" y "Continuar" en la misma fila */
+/* Contenedor para alinear "Volver" y "Continuar" */
 a {
     text-decoration: none;
 }
