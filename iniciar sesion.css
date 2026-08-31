@@ -110,14 +110,16 @@ form input::placeholder {
 button {
     background-color: #163d17;
     color: white;
-    border: none;
+    border-color: white;
     padding: 14px 30px;
-    margin: 30px 15px 0;
+   /* margin: 30px 15px 0;*/
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     /* Transiciones fluidas para hover */
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: row;
 }
 
 /* Hover en los botones */
@@ -148,4 +150,6 @@ a button {
 /* Contenedor para alinear "Volver" y "Continuar" */
 a {
     text-decoration: none;
+    display: flex;
+    flex-direction: row;
 }

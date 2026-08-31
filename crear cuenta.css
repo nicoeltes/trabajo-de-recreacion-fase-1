@@ -63,12 +63,6 @@ h1 {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Hover opcional para el Título */
-h1:hover {
-    background-color: #1f5420;
-    transform: scale(1.02);
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -151,7 +145,7 @@ form label:hover {
 button {
     background-color: #163d17;
     color: white;
-    border: none;
+    border-color: white;
     padding: 12px 28px;
     margin-top: 15px;
     border-radius: 8px;

@@ -58,11 +58,12 @@ h1:hover {
     font-size: 32px;
     background-color: #014A00;
     color: white;
-    border: none;
+    border-color:white ;
     border-radius: 16px;
     cursor: pointer;
     /* Transiciones suaves para color, elevación y sombra */
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
 }
 
 /* Hover para Iniciar Sesión */
@@ -78,7 +79,7 @@ h1:hover {
     font-size: 32px;
     background-color: #014A00;
     color: white;
-    border: none;
+    border-color: white;
     border-radius: 16px;
     cursor: pointer;
     /* Transiciones suaves para color, elevación y sombra */

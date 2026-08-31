@@ -44,26 +44,22 @@ h1 {
     font-weight: 400;
     background-color: #92F980;
     color: #1b5e20;
-    border-radius: 20px;
+    border-radius: 10px;
     margin: 0;
     /* Transición suave para el título */
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Hover en el título */
-h1:hover {
-    background-color: #ffffff;
-    transform: scale(1.03); /* Crece ligeramente al pasar el mouse */
-}
 
-/* --- BOTÓN RECETAS --- */
+
+/*  BOTÓN RECETAS */
 .Recetas {
     width: 280px;
     height: 130px;
     font-size: 32px;
     background-color: #014A00;
     color: white;
-    border: none;
+    border-color: white;
     border-radius: 16px;
     cursor: pointer;
     /* Estilo del primer CSS: cambio de verde, elevación y sombra */
@@ -89,7 +85,7 @@ h1:hover {
     font-size: 32px;
     background-color: #014A00;
     color: white;
-    border: none;
+    border-color: white;
     border-radius: 16px;
     cursor: pointer;
     /* Estilo del primer CSS: cambio de verde, elevación y sombra */
