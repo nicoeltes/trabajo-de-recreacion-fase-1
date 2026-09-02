@@ -80,13 +80,15 @@ main {
     padding: 45px 40px;
 }
 
+
 #zone {
     width: 100%;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem 1rem;
 }
+
 
 /* TARJETA */
 
@@ -96,7 +98,7 @@ main {
     border-radius: 6px;
     overflow: hidden;
     color: white;
-
+    
 }
 
 
