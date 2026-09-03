@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    min-height: 100vh;
+    background-color: #4a9c2d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    position: relative;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.logo { 
+    top: 20px;
+    left: 20px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    /* Transición para suave animación */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #163d17;
+    line-height: 1.1;
+}
+
+button {
+    background-color: #163d17;
+    color: white;
+    border-color: white;
+    padding: 12px 28px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    /* Transiciones fluidas para hover */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover para todos los botones */
+button:hover {
+    background-color: #0f2c10;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto al presionar el botón */
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+h1 {
+    width: 310px;
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    background-color: #92F980;
+    color: #1b5e20;
+    border-radius: 10px;
+    margin: 0;
+    /* Transición suave para el título */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
