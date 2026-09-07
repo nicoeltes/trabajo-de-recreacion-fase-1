@@ -1,34 +1,41 @@
 body{
     margin: 0;
     min-height: 100vh;
-    background-color: #4a9c2d;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding-top: 15px;
     position: relative;
+    height: 100%;
+    background-color: #299000;
 }
 
 header{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    position: relative;
     
 }
 
+/* LOGO */
 .logo { 
-    top: 20px;
-    left: 20px;
-    background: white;
-    padding: 10px 20px;
-    border-radius: 12px;
+    width: 184px;
+    height: 84px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    /* Transición para suave animación */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    text-align: center;
+    background-color: #FCEDFF;
+    color: #1d1f1d;
 
+    /* Igual que en la primera imagen */
+    border-radius: 0 0 30px 30px;
+
+    position: absolute;
+    left: -20px;
+    top: -15px;
+
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
 .logo img {
     width: 40px;
@@ -42,35 +49,11 @@ header{
     line-height: 1.1;
 }
 
-button {
-    background-color: #163d17;
-    color: white;
-    border-color: white;
-    padding: 12px 28px;
-    margin-top: 15px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    /* Transiciones fluidas para hover */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
 
-/* Hover para todos los botones */
-button:hover {
-    background-color: #0f2c10;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Efecto al presionar el botón */
-button:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-
+/* TÍTULO */
 h1 {
-    width: 310px;
-    height: 175px;
+    width: 350px;
+    height: 125px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,6 +64,33 @@ h1 {
     color: #1b5e20;
     border-radius: 10px;
     margin: 0;
-    /* Transición suave para el título */
-    transition: transform 0.3s ease, background-color 0.3s ease;
+   transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+/* BOTÓN */
+button {
+    position: absolute;
+    left: 1000px;
+    top: 0px;
+    background-color: #163d17;
+    color: white;
+    border-color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 9rem ;
+    height: 6rem ;
+}
+
+button:hover {
+    background-color: #0f2c10;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
