@@ -14,40 +14,37 @@ body {
     position: relative;
 }
 
-/* Logo arriba a la izquierda */
-.logo {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    background: white;
-    padding: 8px 16px;
-    border-radius: 12px;
+.logo { 
+    width: 184px;
+    height: 84px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    /* Transición para hover */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-}
+    text-align: center;
+    background-color: #FCEDFF;
+    color: #1d1f1d;
 
-/* Hover para el Logo */
-.logo:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Igual que en la primera imagen */
+    border-radius: 0 0 30px 30px;
+
+    position: absolute;
+    left: -20px;
+    top: -15px;
+
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .logo img {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
 }
 
 .logo span {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     color: #163d17;
     line-height: 1.1;
 }
-
 /* Título "Crear cuenta" */
 h1 {
     background-color: #163d17;

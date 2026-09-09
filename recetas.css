@@ -1,136 +1,141 @@
-body {
-    margin: 0;
-    min-height: 100vh;
-    background-color:  #299000;
-    position: relative;
+body { 
+    margin: 0; 
+    min-height: 100vh; 
+    background-color: #299000; 
+    position: relative; 
+} 
+ 
+header { 
+    width: 100%; 
+    height: 5rem; 
+    display: flex; 
+    align-items: center; 
+    position: relative; 
+} 
+
+.logo {  
+    width: 184px; 
+    height: 84px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    background-color: #FCEDFF; 
+    color: #1d1f1d; 
+ 
+    border-radius: 0 0 30px 30px; 
+ 
+    position: absolute; 
+    left: -20px; 
+    top: -15px; 
+ 
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+} 
+ 
+.logo img { 
+    width: 40px; 
+    height: 40px; 
+} 
+ 
+.logo span { 
+    font-size: 16px; 
+    font-weight: 600; 
+    color: #163d17; 
+    line-height: 1.1; 
+} 
+
+
+/* BUSCADOR */
+
+.busqueda { 
+    position: absolute;
+    left: 180px;
+    top: 8px;
 }
 
-header{
-    width:100% ;
-    height: 5rem ;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-.logo { 
-    top: 20px;
-    left: 20px;
-    background: white;
-    padding: 10px 20px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    /* Transición para suave animación */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+.busqueda input { 
+    width: 290px; 
+    height: 28px; 
+    background-color: transparent; 
+    border: 1px solid white; 
+    border-radius: 6px; 
+    color: white; 
+    font-size: 16px; 
+    padding-left: 10px; 
+} 
+ 
+.busqueda input::placeholder { 
+    color: white; 
+} 
 
 
-.logo img {
-    width: 40px;
-    height: 40px;
+/* BOTÓN AGREGAR */
+
+.agregar { 
+    position: absolute;
+    left: 495px;
+    top: 2px;
 }
 
-.logo span {
-    font-size: 16px;
-    font-weight: 600;
-    color: #163d17;
-    line-height: 1.1;
-}
-
-.busqueda{
-    margin-left:50px;
-}
-.busqueda input {
-    width: 290px;
-    height: 28px;
-
-    background-color: transparent;
-    border: 1px solid white;
-    border-radius: 6px;
-
-    color: white;
-    font-size: 16px;
-    padding-left: 10px;
-}
-
-.busqueda input::placeholder {
-    color: white;
-}
-
-.agregar button{
-    height: 40px;
-
-    background-color:  #163d17 ;
-    border: 2px solid white;
-    border-radius: 7px;
-    color: white;
-    font-size: 14px;
-    padding: 0 10px;
-    cursor: pointer;
-    margin-right: 4rem;
-}
+.agregar button { 
+    height: 40px; 
+    background-color: #163d17; 
+    border: 2px solid white; 
+    border-radius: 7px; 
+    color: white; 
+    font-size: 14px; 
+    padding: 0 10px; 
+    cursor: pointer; 
+    margin-right: 0;
+} 
 
 
-/* RECETAS */
-
-main {
-    padding: 45px 40px;
-}
-
-
-#zone {
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2rem 1rem;
-}
+/* RECETAS */ 
+ 
+main { 
+    padding: 45px 40px; 
+} 
+ 
+#zone { 
+    width: 100%; 
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 2rem 1rem; 
+} 
 
 
-/* TARJETA */
-
-.recetas {
-    height: 165px;
-    border: 2px solid white;
-    border-radius: 6px;
-    overflow: hidden;
-    color: white;
-    
-}
-
-
-/* FOTO */
-
-.foto {
-    height: 135px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    font-size: 20px;
-}
+/* TARJETA */ 
+ 
+.recetas { 
+    height: 165px; 
+    border: 2px solid white; 
+    border-radius: 6px; 
+    overflow: hidden; 
+    color: white; 
+} 
 
 
-/* TÍTULO */
+/* FOTO */ 
+ 
+.foto { 
+    height: 135px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    font-size: 20px; 
+} 
 
-.recetas h2 {
-    height: 28px;
 
-    margin: 0;
-
-    border-top: 2px solid white;
-
-    padding-left: 5px;
-
-    display: flex;
-    align-items: center;
-
-    font-size: 15px;
-    font-weight: normal;
+/* TÍTULO */ 
+ 
+.recetas h2 { 
+    height: 28px; 
+    margin: 0; 
+    border-top: 2px solid white; 
+    padding-left: 5px; 
+    display: flex; 
+    align-items: center; 
+    font-size: 15px; 
+    font-weight: normal; 
 }

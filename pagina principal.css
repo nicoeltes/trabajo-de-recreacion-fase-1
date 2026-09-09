@@ -122,25 +122,24 @@ h1 {
 .perfil:hover {
     background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
-}.logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: white;
-    padding: 10px 20px;
-    border-radius: 12px;
+}.logo { 
+    width: 184px;
+    height: 84px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    /* Transición para suave animación */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    text-align: center;
+    background-color: #FCEDFF;
+    color: #1d1f1d;
 
-/* Hover en el logo */
-.logo:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Igual que en la primera imagen */
+    border-radius: 0 0 30px 30px;
+
+    position: absolute;
+    left: -20px;
+    top: -15px;
+
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .logo img {
