@@ -55,63 +55,6 @@
         <button type="button">Volver</button>
     </a>
 
-    <script>
-        const form = document.getElementById('crearCuentaForm');
-        const mensaje = document.getElementById('mensaje');
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const usuario = document.getElementById('usuario').value;
-            const password = document.getElementById('password').value;
-            const confirmarPassword = document.getElementById('confirmarPassword').value;
-
-            // CAMBIO: Leemos el estado (true/false) de cada checkbox
-            const esVegano = document.getElementById('vegano').checked;
-            const esCeliaco = document.getElementById('celiaco').checked;
-            const esVegetariano = document.getElementById('vegetariano').checked;
-
-            // CAMBIO: VALIDACIÓN OBLIGATORIA
-            // Comprobamos que AL MENOS UNA de las 3 esté seleccionada. Si ninguna es true, frena el avance.
-            if (!esVegano && !esCeliaco && !esVegetariano) {
-                mensaje.textContent = "Debes seleccionar al menos una preferencia (Vegano, Celíaco o Vegetariano).";
-                mensaje.style.color = "#ffdddd";
-                return; // Corta la ejecución para que no avance
-            }
-
-            if (password !== confirmarPassword) {
-                mensaje.textContent = "Las contraseñas no coinciden.";
-                mensaje.style.color = "#ffdddd";
-                return;
-            }
-
-            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-
-            const yaExiste = usuarios.some(u => u.usuario === usuario);
-            if (yaExiste) {
-                mensaje.textContent = "Ese usuario ya existe.";
-                mensaje.style.color = "#ffdddd";
-                return;
-            }
-
-            // CAMBIO: Guardamos las 3 opciones de forma independiente en el objeto
-            usuarios.push({ 
-                usuario, 
-                password,
-                vegano: esVegano,
-                celiaco: esCeliaco,
-                vegetariano: esVegetariano
-            });
-            
-            localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
-            mensaje.textContent = "¡Cuenta creada con éxito! Redirigiendo...";
-            mensaje.style.color = "white";
-
-            setTimeout(() => {
-                window.location.href = "pagina principal.html";
-            }, 1000);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
