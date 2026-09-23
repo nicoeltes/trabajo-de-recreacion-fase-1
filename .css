@@ -12,8 +12,15 @@ margin-left:50% ;
 }
 
 .nombredepestaña{
-    height: 30px ;
+    margin-top: 20px ;
+    height: 55px ;
     width: 100%;
     background-color: #92F980;
    
+}
+.h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
