@@ -1,104 +1,19 @@
-html, body {
+body{
+    background-color: #349C26;
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #299000;
 }
 
-.body1 {
-    display: flex;
-    justify-content: flex-start; /* Centra el título horizontalmente */
-    align-items: flex-start;
-   /* margin-top: 50px;*/       /* Espacio superior para despegarlo del borde */
+.iniciodesesion{
+    height: 50% ;
+    width: 50% ;
+margin-left:50% ;
 }
 
-/* Capa 2: Iniciar sesión */
-.body2 {
-    display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center;
-    margin-top: 90px;        /* Distancia razonable respecto al título */
-}
-
-/* Capa 3: Crear cuenta */
-.body3 {
-    display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center;
-    margin-top: 20px;        /* Distancia razonable respecto al botón superior */
-}
-
-.logo { 
-    width: 184px;
-    height: 84px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #FCEDFF;
-    color: #1d1f1d;
-
-    /* Igual que en la primera imagen */
-    border-radius: 0 0 30px 30px;
-
-    position: absolute;
-    left: -20px;
-    top: -15px;
-
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.logo img {
-    width: 40px;
-    height: 40px;
-}
-
-.logo span {
-    font-size: 16px;
-    font-weight: 600;
-    color: #163d17;
-    line-height: 1.1;
-}
-
-
-
-.iniciarsesion {
-    width: 280px;
-    height: 130px;
-    font-size: 32px;
-    background-color: #014A00;
-    color: white;
-    border-color:white ;
-    border-radius: 16px;
-    cursor: pointer;
-    /* Transiciones suaves para color, elevación y sombra */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-
-}
-
-/* Hover para Iniciar Sesión */
-.iniciarsesion:hover {
-    background-color: #027400; /* Verde más claro */
-    transform: translateY(-4px); /* Eleva el botón */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Agrega sombra */
-}
-
-.crearcuenta {
-    width: 280px;
-    height: 130px;
-    font-size: 32px;
-    background-color: #014A00;
-    color: white;
-    border-color: white;
-    border-radius: 16px;
-    cursor: pointer;
-    /* Transiciones suaves para color, elevación y sombra */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-/* Hover para Crear Cuenta */
-.crearcuenta:hover {
-    background-color: #027400; /* Verde más claro */
-    transform: translateY(-4px); /* Eleva el botón */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Agrega sombra */
+.nombredepestaña{
+    height: 30px ;
+    width: 100%;
+    background-color: #92F980;
+   
 }
