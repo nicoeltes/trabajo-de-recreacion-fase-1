@@ -6,9 +6,17 @@ botonCrearCuenta.addEventListener("click", function() {
 });
 const formLogin = document.getElementById("loginForm");
 formLogin.addEventListener("submit", function(e) {
-e.preventDefault();
-const usuario = document.getElementById("usuario").value;
-document.getElementById("usuario").value
-const password = document.getElementById("password").value;
-const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    e.preventDefault();
+    const usuario = document.getElementById("usuario").value;
+    const password = document.getElementById("password").value;
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuarioValido = usuarios.find(function(u) {
+    return u.usuario === usuario && u.password === password; 
+    });
+    if (usuarioValido) {
+        window.location.href = "pagina principal.html";
+    }else {
+        const mensaje = document.getElementById("mensaje");
+        mensaje.textContent = "Usuario o contraseña incorrectos.";
+    }
 });
