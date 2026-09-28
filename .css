@@ -1,5 +1,5 @@
 body{
-    background-color: #349C26;
+    background: linear-gradient(to left, #117a03, #99f08a);
     margin: 0;
     padding: 0;
     height: 100%;
@@ -66,4 +66,14 @@ form input {
 
 .crearcuenta a:hover {
     text-decoration: underline;
+}
+
+.zonelogo{
+    height: 50% ;
+    weight: 100% ;
+}
+.slogan{
+    height: 1rem;
+    width: 1rem;
+    background-color: #92F980;
 }
