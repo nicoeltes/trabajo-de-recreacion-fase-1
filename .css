@@ -1,5 +1,5 @@
 body{
-    background: linear-gradient(to left, #117a03, #99f08a);
+    background: linear-gradient(to left, #117a03, #83f170);
     margin: 0;
     padding: 0;
     height: 100%;
@@ -56,7 +56,7 @@ form input {
 .crearcuenta {
     text-align: center;
     color: white;
-    margin-top: 20px;
+    margin-top: -70px;
 }
 
 .crearcuenta a {
@@ -67,13 +67,55 @@ form input {
 .crearcuenta a:hover {
     text-decoration: underline;
 }
+.botoncontinuar{
+    background-color: #014A00;
+    width: 7rem ;
+    height: 4rem ;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-left: 18rem ;
+}
+.botoncontinuar:hover{
+  background-color: #40c029;
+}
+.botoncontinuar b {
+    color: rgb(255, 255, 255);
+}
+.zonelogo {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 
-.zonelogo{
-    height: 50% ;
-    weight: 100% ;
+img {
+    width: 250x;
+    height: 250px;
 }
-.slogan{
-    height: 1rem;
-    width: 1rem;
+
+.cuadradodelslogan {
+    height: 10rem;
+    width: 20rem;
     background-color: #92F980;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid black;
 }
+
+
+.slogan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+}
+
