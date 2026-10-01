@@ -15,7 +15,7 @@ margin-left:50% ;
     margin-top: 20px ;
     height: 55px ;
     width: 100%;
-    background-color: #92F980;
+    background-color: #62c252;
   
 }
 .h2{
@@ -56,12 +56,14 @@ form input {
 .crearcuenta {
     text-align: center;
     color: white;
-    margin-top: -70px;
+    font-size: 20px ;
+    margin-top: -2rem ;
 }
 
 .crearcuenta a {
     color: #00aaff;
     text-decoration: none;
+    font-size: 20px;
 }
 
 .crearcuenta a:hover {
@@ -74,7 +76,10 @@ form input {
     border: 3px solid white;
     border-radius: 10px;
     font-size: 20px;
-    margin-left: 18rem ;
+    display: flex;
+    justify-content:flex-end;
+   /* margin-left: 18rem ;*/
+   margin-top: 1.5rem;
 }
 .botoncontinuar:hover{
   background-color: #40c029;
@@ -94,13 +99,13 @@ form input {
 }
 
 img {
-    width: 250x;
-    height: 250px;
+    width: 20rem;
+    height: 20rem;
 }
 
 .cuadradodelslogan {
-    height: 10rem;
-    width: 20rem;
+    height: 13rem;
+    width: 23rem;
     background-color: #92F980;
     margin-top: 15px;
     display: flex;
