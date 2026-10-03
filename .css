@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'Kyiv Type Sans';
+    src: url('./KyivTypeSans-Regular.woff2') format('woff2');
+}
+
 body{
-    background-color: #349C26;
+    font-family: 'Noto Sans', sans-serif;
+    background: linear-gradient(to left, #117a03, #83f170);
     margin: 0;
     padding: 0;
     height: 100%;
@@ -15,7 +23,8 @@ margin-left:50% ;
     margin-top: 20px ;
     height: 55px ;
     width: 100%;
-    background-color: #92F980;
+    background-color: #1cc106;
+    font-family: 'Kyiv Type Sans', sans-serif;
   
 }
 .h2{
@@ -23,6 +32,7 @@ margin-left:50% ;
     justify-content: center;
     font-size:25px ;
     margin-top: -5rem ;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 form {
@@ -30,7 +40,10 @@ form {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 50px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 form label {
@@ -57,13 +70,70 @@ form input {
     text-align: center;
     color: white;
     margin-top: 20px;
+    font-size: 20px;
+    margin-top:-30px ;
 }
 
 .crearcuenta a {
     color: #00aaff;
     text-decoration: none;
 }
-
 .crearcuenta a:hover {
     text-decoration: underline;
+}
+.botoncontinuar {
+    background-color: #014A00;
+    width: 7rem;
+    height: 4rem;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.botoncontinuar:hover {
+    background-color: #40c029;
+}
+
+.botoncontinuar b {
+    color: rgb(255, 255, 255);
+}
+
+.zonelogo {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.logo {
+    width: 18rem;
+    height: 18rem;
+    margin-top: 20px;
+}
+.cuadradodelslogan {
+    height: 9rem;
+    width: 19rem;
+    background-color: #92F980;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.slogan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Noto Sans', sans-serif;
 }
