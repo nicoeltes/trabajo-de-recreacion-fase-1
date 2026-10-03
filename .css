@@ -6,7 +6,10 @@
 }
 
 body{
+<<<<<<< HEAD
     font-family: 'Noto Sans', sans-serif;
+=======
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45
     background: linear-gradient(to left, #117a03, #83f170);
     margin: 0;
     padding: 0;
@@ -23,8 +26,12 @@ margin-left:50% ;
     margin-top: 20px ;
     height: 55px ;
     width: 100%;
+<<<<<<< HEAD
     background-color: #1cc106;
     font-family: 'Kyiv Type Sans', sans-serif;
+=======
+    background-color: #62c252;
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45
   
 }
 .h2{
@@ -69,26 +76,40 @@ form input {
 .crearcuenta {
     text-align: center;
     color: white;
+<<<<<<< HEAD
     margin-top: 20px;
     font-size: 20px;
     margin-top:-30px ;
+=======
+    font-size: 20px ;
+    margin-top: -2rem ;
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45
 }
 
 .crearcuenta a {
     color: #00aaff;
     text-decoration: none;
+    font-size: 20px;
 }
 .crearcuenta a:hover {
     text-decoration: underline;
 }
+<<<<<<< HEAD
 .botoncontinuar {
     background-color: #014A00;
     width: 7rem;
     height: 4rem;
+=======
+.botoncontinuar{
+    background-color: #014A00;
+    width: 7rem ;
+    height: 4rem ;
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45
     border: 3px solid white;
     border-radius: 10px;
     font-size: 20px;
     display: flex;
+<<<<<<< HEAD
     justify-content: center;
     align-items: center;
     margin-top: 25px;
@@ -103,6 +124,18 @@ form input {
     color: rgb(255, 255, 255);
 }
 
+=======
+    justify-content:flex-end;
+   /* margin-left: 18rem ;*/
+   margin-top: 1.5rem;
+}
+.botoncontinuar:hover{
+  background-color: #40c029;
+}
+.botoncontinuar b {
+    color: rgb(255, 255, 255);
+}
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45
 .zonelogo {
     height: 100%;
     width: 50%;
@@ -113,6 +146,7 @@ form input {
     left: 0;
     top: 0;
 }
+<<<<<<< HEAD
 .logo {
     width: 18rem;
     height: 18rem;
@@ -121,6 +155,17 @@ form input {
 .cuadradodelslogan {
     height: 9rem;
     width: 19rem;
+=======
+
+img {
+    width: 20rem;
+    height: 20rem;
+}
+
+.cuadradodelslogan {
+    height: 13rem;
+    width: 23rem;
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45
     background-color: #92F980;
     margin-top: 15px;
     display: flex;
@@ -129,11 +174,22 @@ form input {
     border-radius: 5px;
     border: 2px solid black;
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45
 .slogan {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+<<<<<<< HEAD
     font-size: 30px;
     font-family: 'Noto Sans', sans-serif;
 }
+=======
+    font-size: 40px;
+}
+
+>>>>>>> 462108b4040db25f9b90b7a142e7e5c653f41d45

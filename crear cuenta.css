@@ -46,18 +46,18 @@ body {
     line-height: 1.1;
 }
 /* Título "Crear cuenta" */
-h1 {
-    background-color: #163d17;
-    color: white;
-    font-weight: 300;
-    font-size: 32px;
-    text-align: center;
-    padding: 15px 40px;
-    border-radius: 12px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    /* Transición para hover */
-    transition: transform 0.3s ease, background-color 0.3s ease;
+.nombredepagina{
+    height: 7rem;
+    width: 100%;
+}
+h2 {
+    margin-top: 20px ;
+    height: 4rem ;
+    width: 100%;
+    background-color: #62c252;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form {
