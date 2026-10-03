@@ -5,53 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear cuenta</title>
     <link rel="stylesheet" href="crear cuenta.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-   <header class="nombredepagina">
+    <main class="elementopadre">
+   <header class="nombredepestaña">
+    <section class="titulo">
     <h2>Crear cuenta</h2>
+    </section>
    </header>
-    <form id="crearCuentaForm">
-        <!-- Campos de texto obligatorios -->
-        <div>
-            <input required type="text" id="usuario" placeholder="Email o nombre de usuario">
-        </div>
-        <div>
-            <input required type="password" id="password" placeholder="Crear contraseña">
-        </div>
-        <div>
-            <input required type="password" id="confirmarPassword" placeholder="Confirmar contraseña">
-        </div>
-    
-        <p style="color: white; margin-bottom: 8px; font-weight: 500;">Preferencia alimenticia (Seleccioná al menos 1):</p>
-        
-        <!-- CAMBIO: Volvemos a 'checkbox' para permitir marcar 1, 2 o las 3 opciones a la vez -->
-        <div>
-            <input type="checkbox" id="vegano">
-            <label for="vegano">Vegano</label>
-        </div>
-        <div>
-            <input type="checkbox" id="celiaco">
-            <label for="celiaco">Celíaco</label>
-        </div>
-        <div>
-            <input type="checkbox" id="vegetariano">
-            <label for="vegetariano">Vegetariano</label>   
-        </div>
-
-        <!-- Botón para procesar el formulario -->
-        <button type="submit">Continuar</button>
-    </form>
+         <form id="loginForm">
+            <label for="Usuario"><b>Usuario</b></label>
+            <input required type="text" id="usuario">
+             <label for="Email"><b>Correo electrónico</b></label>
+            <input required type="text" id="Email">
+            <label for="Contraseña"><b>Contraseña</b></label>
+            <input required type="password" id="password">
+            <label for="confirmarContraseña"><b>confirmarContraseña</b></label>
+            <input required type="password" id="Confirmarpassword">
+        </form>
     
     <p id="mensaje"></p>
-
     <br>
     <a href="index.html">
         <button type="button">Volver</button>
     </a>
-
+</main>
     <script src="script.js"></script>
 </body>
 </html>
