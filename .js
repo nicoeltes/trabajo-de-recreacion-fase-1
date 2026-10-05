@@ -1,15 +1,3 @@
-const titulo = document.querySelector(".h2");
-
-const enlace = document.querySelector(".link");
-
-const botonCrearCuenta = document.querySelector(".crearcuenta");
-
-botonCrearCuenta.addEventListener("click", function() {
-
-    window.location.href = "crear cuenta.html";
-
-});
-
 const formLogin = document.getElementById("loginForm");
 
 formLogin.addEventListener("submit", function(e) {
@@ -17,26 +5,33 @@ formLogin.addEventListener("submit", function(e) {
     e.preventDefault();
 
     const usuario = document.getElementById("usuario").value;
-
     const password = document.getElementById("password").value;
 
     const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    const usuarioValido = usuarios.find(function(u) {
-
-        return u.usuario === usuario && u.password === password;
-
+    const usuarioExiste = usuarios.find(function(u) {
+        return u.usuario === usuario;
     });
 
-    if (usuarioValido) {
+    const usuarioValido = usuarios.find(function(u) {
+        return u.usuario === usuario && u.password === password;
+    });
 
-        window.location.href = "pagina principal.html";
+    const mensaje = document.getElementById("mensaje");
+
+    if (!usuarioExiste) {
+
+        mensaje.textContent = "Este usuario no existe.";
+        mensaje.style.color = "red";
+
+    } else if (!usuarioValido) {
+
+        mensaje.textContent = "Contraseña incorrecta.";
+        mensaje.style.color = "red";
 
     } else {
 
-        const mensaje = document.getElementById("mensaje");
-
-        mensaje.textContent = "Usuario o contraseña incorrectos.";
+        window.location.href = "pagina principal.html";
 
     }
 

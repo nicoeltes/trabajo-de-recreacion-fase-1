@@ -69,3 +69,44 @@ form input {
     font-size: 16px;
     outline: none;
 }
+
+.preferencias {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.opcionceliaco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.opcionceliaco input {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 18px;
+    height: 18px;
+}
+
+.opcionceliaco img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.opcionceliaco span {
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.palabradesimbolo{
+margin-top: 2px;
+font-size: 1rem;
+}
