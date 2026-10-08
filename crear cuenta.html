@@ -1,72 +1,87 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear cuenta</title>
-    <link rel="stylesheet" href="crear cuenta.css">
-</head>
-<body>
-    <main class="elementopadre">
-   <header class="nombredepestaña">
-    <section class="titulo">
-    <h2>Crear cuenta</h2>
-    </section>
-   </header>
-         <form id="loginForm">
-           <div class="usuario"> 
-            <label for="Usuario"><b>Usuario</b></label>
-            <input required type="text" id="usuario">
-             </div>
-             <div class="correoelectronico">
-            <label for="Email"><b>Correo electrónico</b></label>
-            <input required type="text" id="Email">
-        </div>
-        <div class="contraseña">
-                <label for="Contraseña"><b>Contraseña</b></label>
-            <input required type="password" id="password">
-        </div>
-        <div class="confirmarcontraseña">
-            <label for="ConfirmarContraseña"><b>confirmarContraseña</b></label>
-            <input required type="password" id="Confirmarpassword">
-        </div>
-        </form>
-    
-    <p id="mensaje"></p>
-    <br>
-   
-    <section class="preferencias">
+<!DOCTYPE html> 
+<html lang="es"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Crear cuenta</title> 
+    <link rel="stylesheet" href="crear cuenta.css"> 
+</head> 
+<body> 
 
-        <div class="opcionceliaco">
-            <input type="checkbox" id="celiaco">
-            <label for="celiaco">
-                <img src="celiacosimbolo.png" alt="Celíaco">
-                <div class="palabradesimbolo">Celíaco</div>
-            </label>
-        </div>
-    
-        <div class="opcionveganismo">
-            <input type="checkbox" id="veganismo">
-            <label for="veganismo">
-                <img src="veganosimbolo.png" alt="Veganismo">
-                <div class="palabradesimbolo">Veganismo</div>
-            </label>
-        </div>
-    
-        <div class="opcionvegetarianismo">
-            <input type="checkbox" id="vegetarianismo">
-            <label for="vegetarianismo">
-                <img src="vegetarianosimbolo.png" alt="Vegetarianismo">
-                <div class="palabradesimbolo">Vegetarianismo</div>
-            </label>
-        </div>
-    
-    </section>
+    <main class="elementopadre"> 
 
-    <a href=".html">
-        <button type="button">Volver</button>
-    </a>
-</main>
-    <script src="script.js"></script>
-</body>
+        <header class="nombredepestaña"> 
+            <section class="titulo"> 
+                <h2>Crear cuenta</h2> 
+            </section> 
+        </header> 
+
+        <div class="contenido">
+
+            <form id="loginForm"> 
+
+                <div class="usuario">  
+                    <label for="Usuario"><b>Usuario</b></label> 
+                    <input required type="text" id="usuario"> 
+                </div> 
+
+                <div class="correoelectronico"> 
+                    <label for="Email"><b>Correo electrónico</b></label> 
+                    <input required type="text" id="Email"> 
+                </div> 
+
+                <div class="contraseña"> 
+                    <label for="Contraseña"><b>Contraseña</b></label> 
+                    <input required type="password" id="password"> 
+                </div> 
+
+                <div class="confirmarcontraseña"> 
+                    <label for="ConfirmarContraseña"><b>confirmarContraseña</b></label> 
+                    <input required type="password" id="Confirmarpassword"> 
+                </div> 
+
+            </form> 
+
+            <section class="preferencias"> 
+ 
+                <div class="opcionceliaco"> 
+                    <input type="checkbox" id="celiaco"> 
+                    <label for="celiaco"> 
+                        <img src="celiacosimbolo.png" alt="Celíaco"> 
+                        <div class="palabradesimbolo">Celíaco</div> 
+                    </label> 
+                </div> 
+     
+                <div class="opcionveganismo"> 
+                    <input type="checkbox" id="veganismo"> 
+                    <label for="veganismo"> 
+                        <img src="veganosimbolo.png" alt="Veganismo"> 
+                        <div class="palabradesimbolo">Veganismo</div> 
+                    </label> 
+                </div> 
+     
+                <div class="opcionvegetarianismo"> 
+                    <input type="checkbox" id="vegetarianismo"> 
+                    <label for="vegetarianismo"> 
+                        <img src="vegetarianosimbolo.png" alt="Vegetarianismo"> 
+                        <div class="palabradesimbolo">Vegetarianismo</div> 
+                    </label> 
+                </div> 
+     
+            </section> 
+
+        </div>
+ 
+        <p id="mensaje"></p> 
+        <br> 
+    
+        <a href=".html"> 
+            <button type="button">Volver</button> 
+        </a> 
+
+    </main> 
+
+    <script src="script.js"></script> 
+
+</body> 
 </html>
