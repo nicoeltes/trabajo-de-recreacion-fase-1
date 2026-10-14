@@ -25,22 +25,23 @@ body {
 
 
 .nombredepestaña {
-    margin-top: 20px;
-    height: 55px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.25rem;
+    height: 3.4375rem;
     width: 100%;
     background-color: rgba(146, 249, 128, 0.5);
     font-family: 'Kyiv Type Sans', sans-serif;
 }
 
 .titulo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: #014A00;
 }
 
 .titulo h2 {
-    font-size: 25px;
+    font-size: 1.5625rem;
     margin: 0;
     font-family: 'Kyiv Type Sans', sans-serif;
 }
@@ -71,23 +72,23 @@ form {
 }
 
 form label {
-    width: 320px;
+    width: 20rem;
     max-width: 80vw;
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
     color: white;
-    font-size: 18px;
+    font-size: 1.125rem;
     text-align: left;
 }
 
 form input {
-    width: 320px;
+    width: 20rem;
     max-width: 80vw;
-    padding: 12px 16px;
-    margin-bottom: 5px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.3125rem;
     background-color: white;
-    border: 1px solid white;
-    border-radius: 8px;
-    font-size: 16px;
+    border: 0.0625rem solid white;
+    border-radius: 0.5rem;
+    font-size: 1rem;
     outline: none;
     box-sizing: border-box;
 }
@@ -129,7 +130,7 @@ form input {
     justify-content: flex-start;
     width: 50%;
     height: 100%;
-    margin-top: 90px;
+    margin-top: 5.625rem;
     box-sizing: border-box;
 }
 
@@ -137,10 +138,10 @@ form input {
 
 .titulopreferencias {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 50px;
+    font-size: 3.125rem;
     color: black;
     text-align: center;
-    margin: 0 0 30px 0;
+    margin: 0 0 1.875rem 0;
 }
 
 
@@ -151,7 +152,7 @@ form input {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px;
+    gap: 3.5rem;
     width: 100%;
 }
 
@@ -166,14 +167,33 @@ form input {
 }
 
 .opcionceliaco input {
+    appearance: none;
     position: absolute;
-    left: -18px;
-    top: 33px;
-    width: 25px;
-    height: 25px;
+    left: -2.5rem;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 1.875rem;
+    height: 1.875rem;
     margin: 0;
     padding: 0;
+    background-color: transparent;
+    border: 0.125rem solid black;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
     cursor: pointer;
+}
+
+.opcionceliaco input:checked {
+    background-color: black;
+}
+
+.opcionceliaco input:checked::after {
+    content: "✓";
+    display: block;
+    color: white;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: center;
 }
 
 .opcionceliaco label {
@@ -184,10 +204,10 @@ form input {
 }
 
 .opcionceliaco img {
-    width: 100px;
-    height: 100px;
+    width: 17vh;
+    height: 17vh;
     object-fit: contain;
-    border: 5px solid black;
+    border: 0.3125rem solid black;
     border-radius: 50%;
     box-sizing: border-box;
 }
@@ -203,15 +223,36 @@ form input {
     font-family: 'Noto Sans', sans-serif;
 }
 
+
+
 .opcionvegetarianismo input {
+    appearance: none;
     position: absolute;
-    left: -18px;
-    top: 33px;
-    width: 25px;
-    height: 25px;
+    left:-2rem;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 1.875rem;
+    height: 1.875rem;
     margin: 0;
     padding: 0;
+    background-color: transparent;
+    border: 0.125rem solid black;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
     cursor: pointer;
+}
+
+.opcionvegetarianismo input:checked {
+    background-color: black;
+}
+
+.opcionvegetarianismo input:checked::after {
+    content: "✓";
+    display: block;
+    color: white;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: center;
 }
 
 .opcionvegetarianismo label {
@@ -222,10 +263,10 @@ form input {
 }
 
 .opcionvegetarianismo img {
-    width: 100px;
-    height: 100px;
+    width: 17vh;
+    height: 17vh;
     object-fit: contain;
-    border: 5px solid black;
+    border: 0.3125rem solid black;
     border-radius: 50%;
     box-sizing: border-box;
 }
@@ -241,15 +282,36 @@ form input {
     font-family: 'Noto Sans', sans-serif;
 }
 
+
+
 .opcionveganismo input {
+    appearance: none;
     position: absolute;
-    left: -18px;
-    top: 33px;
-    width: 25px;
-    height: 25px;
+    left: -2.5rem;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 1.875rem;
+    height: 1.875rem;
     margin: 0;
     padding: 0;
+    background-color: transparent;
+    border: 0.125rem solid black;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
     cursor: pointer;
+}
+
+.opcionveganismo input:checked {
+    background-color: black;
+}
+
+.opcionveganismo input:checked::after {
+    content: "✓";
+    display: block;
+    color: white;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: center;
 }
 
 .opcionveganismo label {
@@ -260,10 +322,10 @@ form input {
 }
 
 .opcionveganismo img {
-    width: 100px;
-    height: 100px;
+    width: 17vh;
+    height: 17vh;
     object-fit: contain;
-    border: 5px solid black;
+    border: 0.3125rem solid black;
     border-radius: 50%;
     box-sizing: border-box;
 }
@@ -271,36 +333,56 @@ form input {
 
 
 .palabradesimbolo {
-    margin-top: 5px;
-    font-size: 16px;
+    margin-top: 0.3125rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
     color: black;
     white-space: nowrap;
 }
 
-.zonebotones{
+.zonebotones {
     height: 6rem;
     width: 100%;
-    margin-top: -15px ;
+    margin-top: -0.9375rem;
+    position: relative;
 }
 
-.botoncrear{
-    height: 4rem ;
-    width: 6.5rem ;
+.botoncrear {
+    height: 4rem;
+    width: 7.5rem;
     background-color: #014A00;
-    border-radius: 10px ;
-    border: solid white ;
-    font-size: 20px;
-    margin-left: 30px;
+    border-radius: 0.625rem;
+    border: solid white;
+    font-size: 1.25rem;
+    margin-left: 1.875rem;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-
+    position: absolute;
+    right: 26rem;
 }
-.botoncrear b{
+
+.botoncrear b {
     color: white;
 }
+
 .botoncrear:hover {
     background-color: #40c029;
+}
+
+.botonvolver {
+    height: 4rem;
+    width: 7.5rem;
+    background-color: transparent;
+    border-radius: 0.625rem;
+    border: solid white;
+    font-size: 1.25rem;
+    margin-left: 1.875rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 26rem;
+    color: white;
 }
