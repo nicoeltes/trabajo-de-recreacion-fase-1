@@ -4,9 +4,13 @@ html, body {
     height: 100%;
     background-color: #299000;
     overflow: hidden;
+    background-image:    linear-gradient(#014A00), url("fondodepaginaprincipal.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.body1 {
+.titulo {
     display: flex;
     justify-content: center;
     align-items: center;
