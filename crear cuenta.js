@@ -1,3 +1,4 @@
+
 const formulario = document.getElementById("loginForm");
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("Email");
@@ -31,29 +32,32 @@ formulario.addEventListener("submit", async function (evento) {
 
     mensaje.textContent = "";
 
-    const nombreUsuario = usuario.value.trim();
-    const correo = email.value.trim();
-    const contraseña = password.value;
-    const confirmarContraseña = confirmarPassword.value;
+    const datosCuenta = {
+        usuario: usuario.value.trim(),
+        email: email.value.trim(),
+        password: password.value,
+        preferencias: obtenerPreferencias()
+    };
 
-    const preferencias = obtenerPreferencias();
-
-    if (preferencias.length === 0) {
-        mensaje.textContent = "Debés seleccionar al menos una restricción alimenticia.";
+    if (
+        !datosCuenta.usuario ||
+        !datosCuenta.email ||
+        !datosCuenta.password ||
+        !confirmarPassword.value
+    ) {
+        mensaje.textContent = "Completá todos los campos.";
         return;
     }
 
-    if (contraseña !== confirmarContraseña) {
+    if (datosCuenta.password !== confirmarPassword.value) {
         mensaje.textContent = "Las contraseñas no coinciden.";
         return;
     }
 
-    const datosCuenta = {
-        usuario: nombreUsuario,
-        email: correo,
-        password: contraseña,
-        preferencias: preferencias
-    };
+    if (datosCuenta.preferencias.length === 0) {
+        mensaje.textContent = "Debés seleccionar al menos una restricción alimenticia.";
+        return;
+    }
 
     try {
         const respuesta = await fetch("http://localhost:3000/registro", {
@@ -75,12 +79,7 @@ formulario.addEventListener("submit", async function (evento) {
         }
 
         mensaje.textContent = "¡La cuenta se creó correctamente!";
-
         formulario.reset();
-
-        celiaco.checked = false;
-        veganismo.checked = false;
-        vegetarianismo.checked = false;
 
     } catch (error) {
         mensaje.textContent =

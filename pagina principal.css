@@ -2,19 +2,36 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #299000;
     overflow: hidden;
-    background-image:    linear-gradient(#014A00), url("fondodepaginaprincipal.png");
+}
+
+body {
+    background-image: url("fondodepaginaprincipal.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(1, 29, 1, 0.4);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
 .titulo {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    width: 5rem;
 }
 
 .body2 {
