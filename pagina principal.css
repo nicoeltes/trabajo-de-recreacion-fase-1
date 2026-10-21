@@ -26,53 +26,56 @@ body > * {
     position: relative;
     z-index: 1;
 }
-.titulo {
+.zonetituloylogo {
+    display: flex;
+    height: 30% ;
+    width: 100%;
+}
+.titulo{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    width: 5rem;
+    width: 100%;
 }
-
-.body2 {
-    position: fixed;
-    top: 50%;
-    right: 350px;
-    transform: translateY(-50%);
-}
-
-.body3 {
-    position: fixed;
-    top: 40px;
-    right: 60px;
-}
-
-.body4 {
-    position: fixed;
-    top: 50%;
-    right: 700px;
-    transform: translateY(-50%);
-}
-
-/* --- TÍTULO --- */
-h1 {
-    width: 310px;
-    height: 175px;
+h2 {
+    width: 17rem;
+    height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 400;
     background-color: #92F980;
-    color: #1b5e20;
+    color: #000000;
     border-radius: 10px;
-    margin: 0;
-    /* Transición suave para el título */
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 3px solid black ;
+}
+.logo{
+    width: 5rem ;
+    height: 5rem;
+}
+.botonImagen{
+    background-color: #b14a4a00;
+    border: none;
+
 }
 
+.botones{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.botonrecetas{
+    display: flex;
+    justify-content: center;
+    
+}
 
+.botonmapa{
+    display: flex;
+    justify-content: center;
+}
 
 /*  BOTÓN RECETAS */
 .Recetas {
@@ -143,34 +146,5 @@ h1 {
 .perfil:hover {
     background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
-}.logo { 
-    width: 184px;
-    height: 84px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #FCEDFF;
-    color: #1d1f1d;
-
-    /* Igual que en la primera imagen */
-    border-radius: 0 0 30px 30px;
-
-    position: absolute;
-    left: -20px;
-    top: -15px;
-
-    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.logo img {
-    width: 40px;
-    height: 40px;
-}
-
-.logo span {
-    font-size: 16px;
-    font-weight: 600;
-    color: #163d17;
-    line-height: 1.1;
-}
