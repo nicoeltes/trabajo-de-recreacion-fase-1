@@ -26,17 +26,39 @@ body > * {
     position: relative;
     z-index: 1;
 }
+
 .zonetituloylogo {
     display: flex;
-    height: 30% ;
+    height: 30%;
     width: 100%;
 }
-.titulo{
+
+.separacion {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.separacion > img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.titulo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
+
 h2 {
     width: 17rem;
     height: 5rem;
@@ -48,16 +70,47 @@ h2 {
     background-color: #92F980;
     color: #000000;
     border-radius: 10px;
-    border: 3px solid black ;
+    border: 3px solid black;
+    margin: 0;
 }
-.logo{
-    width: 5rem ;
+
+.logo {
+    width: 5rem;
     height: 5rem;
 }
-.botonImagen{
-    background-color: #b14a4a00;
-    border: none;
 
+.btn-link {
+    text-decoration: none;
+}
+
+.botonImagen {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.botonImagen img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    margin-right: 50px;
+}
+
+.botonImagen:hover {
+    transform: none;
+}
+
+.botonImagen:hover img {
+    transform: scale(0.9);
+    filter: brightness(1.15);
 }
 
 .botones {
@@ -68,14 +121,15 @@ h2 {
     justify-content: center;
     gap: 100px;
 }
+
 .mapa {
     width: 18rem;
-    height: 13rem;
+    height: 17rem;
     font-size: 30px;
     background-color: #014A00;
     color: white;
-    border-color:white;
-    border-radius: 16px;
+    border-color: white;
+    border-radius: 32px;
     border: 5px solid white;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
@@ -85,31 +139,24 @@ h2 {
     align-items: center;
     text-decoration: none;
 }
+
 .mapa b {
     margin-top: 10px;
     text-decoration: none;
     color: white;
+    font-size: 48px;
 }
+
 .iconomapa {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     display: block;
-    margin-top: -1rem;
 }
 
 .mapa:hover {
     background-color: #027400;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-}
-
-.mapa:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-.btn-link {
-    text-decoration: none;
+    margin-top: -4px;
 }
 
 .btn-link .mapa,
@@ -117,26 +164,31 @@ h2 {
     text-decoration: none;
     color: white;
 }
-/*  BOTÓN RECETAS */
+
 .Recetas {
-    width: 280px;
-    height: 130px;
-    font-size: 32px;
+    width: 18rem;
+    height: 17rem;
+    font-size: 30px;
     background-color: #014A00;
     color: white;
     border-color: white;
-    border-radius: 16px;
+    border-radius: 32px;
     border: 5px solid white;
     cursor: pointer;
-    /* Estilo del primer CSS: cambio de verde, elevación y sombra */
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
-/* Hover en Recetas (Estilo verde más claro del primer CSS) */
 .Recetas:hover {
     background-color: #027400;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    margin-top: -4px;
+    text-decoration: none;
+    color: white;
+    font-size: 48px;
 }
 
 .Recetas:active {
@@ -144,24 +196,26 @@ h2 {
     box-shadow: none;
 }
 
-/* --- BOTÓN MAPA --- */
-
-/* --- BOTÓN PERFIL --- */
-.perfil {
-    width: 160px;
-    height: 45px;
-    font-size: 16px;
-    background-color: transparent;
+.Recetas b {
+    margin-top: 10px;
+    text-decoration: none;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 48px;
 }
 
-/* Hover en Perfil */
-.perfil:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+.iconorecetas {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: block;
 }
 
+.link {
+    text-decoration: none;
+}
+
+.link .Recetas,
+.link .Recetas b {
+    text-decoration: none;
+    color: white;
+}
