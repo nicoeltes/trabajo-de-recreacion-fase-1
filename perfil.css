@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'Kyiv Type Sans';
+    src: url('./KyivTypeSans-Regular.woff2') format('woff2');
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background: #349C26;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.elementopadre {
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+}
+.nombredepestaña {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    height: 3.4rem;
+    width: 100%;
+    background-color: rgba(146, 249, 128, 0.5);
+    font-family: 'Kyiv Type Sans', sans-serif;
+}
+
+.titulo {
+    color: #014A00;
+}
+
+.titulo h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-family: 'Kyiv Type Sans', sans-serif;
+}
+
+.logo{}
+
+

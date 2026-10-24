@@ -30,7 +30,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 1.25rem;
-    height: 3.4375rem;
+    height: 3.4rem;
     width: 100%;
     background-color: rgba(146, 249, 128, 0.5);
     font-family: 'Kyiv Type Sans', sans-serif;
@@ -41,7 +41,7 @@ body {
 }
 
 .titulo h2 {
-    font-size: 1.5625rem;
+    font-size: 1.5rem;
     margin: 0;
     font-family: 'Kyiv Type Sans', sans-serif;
 }
@@ -74,7 +74,7 @@ form {
 form label {
     width: 20rem;
     max-width: 80vw;
-    margin-bottom: 0.3125rem;
+    margin-bottom: 0.3rem;
     color: white;
     font-size: 1.125rem;
     text-align: left;
@@ -84,9 +84,9 @@ form input {
     width: 20rem;
     max-width: 80vw;
     padding: 0.75rem 1rem;
-    margin-bottom: 0.3125rem;
+    margin-bottom: 0.3rem;
     background-color: white;
-    border: 0.0625rem solid white;
+    border: 0.06rem solid white;
     border-radius: 0.5rem;
     font-size: 1rem;
     outline: none;
@@ -130,7 +130,7 @@ form input {
     justify-content: flex-start;
     width: 50%;
     height: 100%;
-    margin-top: 5.625rem;
+    margin-top: 5.6rem;
     box-sizing: border-box;
 }
 
@@ -138,10 +138,10 @@ form input {
 
 .titulopreferencias {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 3.125rem;
+    font-size: 3.1rem;
     color: black;
     text-align: center;
-    margin: 0 0 1.875rem 0;
+    margin: 0 0 1.8rem 0;
 }
 
 
@@ -172,12 +172,12 @@ form input {
     left: -2.5rem;
     top: 45%;
     transform: translateY(-50%);
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 1.8rem;
+    height: 1.8rem;
     margin: 0;
     padding: 0;
     background-color: transparent;
-    border: 0.125rem solid black;
+    border: 0.12rem solid black;
     border-radius: 0.25rem;
     box-sizing: border-box;
     cursor: pointer;
@@ -207,7 +207,7 @@ form input {
     width: 17vh;
     height: 17vh;
     object-fit: contain;
-    border: 0.3125rem solid black;
+    border: 0.31rem solid black;
     border-radius: 50%;
     box-sizing: border-box;
 }
@@ -231,8 +231,8 @@ form input {
     left:-2rem;
     top: 45%;
     transform: translateY(-50%);
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 1.8rem;
+    height: 1.8rem;
     margin: 0;
     padding: 0;
     background-color: transparent;
@@ -266,7 +266,7 @@ form input {
     width: 17vh;
     height: 17vh;
     object-fit: contain;
-    border: 0.3125rem solid black;
+    border: 0.31rem solid black;
     border-radius: 50%;
     box-sizing: border-box;
 }
@@ -290,12 +290,12 @@ form input {
     left: -2.5rem;
     top: 45%;
     transform: translateY(-50%);
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 1.8rem;
+    height: 1.8rem;
     margin: 0;
     padding: 0;
     background-color: transparent;
-    border: 0.125rem solid black;
+    border: 0.12rem solid black;
     border-radius: 0.25rem;
     box-sizing: border-box;
     cursor: pointer;
@@ -325,7 +325,7 @@ form input {
     width: 17vh;
     height: 17vh;
     object-fit: contain;
-    border: 0.3125rem solid black;
+    border: 0.31rem solid black;
     border-radius: 50%;
     box-sizing: border-box;
 }
@@ -333,7 +333,7 @@ form input {
 
 
 .palabradesimbolo {
-    margin-top: 0.3125rem;
+    margin-top: 0.31rem;
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
@@ -344,7 +344,7 @@ form input {
 .zonebotones {
     height: 6rem;
     width: 100%;
-    margin-top: -0.9375rem;
+    margin-top: -0.93rem;
     position: relative;
 }
 
@@ -352,10 +352,10 @@ form input {
     height: 4rem;
     width: 7.5rem;
     background-color: #014A00;
-    border-radius: 0.625rem;
+    border-radius: 0.6rem;
     border: solid white;
     font-size: 1.25rem;
-    margin-left: 1.875rem;
+    margin-left: 1.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -375,10 +375,10 @@ form input {
     height: 4rem;
     width: 7.5rem;
     background-color: transparent;
-    border-radius: 0.625rem;
+    border-radius: 0.6rem;
     border: solid white;
     font-size: 1.25rem;
-    margin-left: 1.875rem;
+    margin-left: 1.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
