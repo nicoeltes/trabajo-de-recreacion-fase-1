@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +9,41 @@
 <body>
     <main class="elementopadre">
         <header class="nombredepestaña">
-        <div class="zonedearriba">
-        <a href="pagina principal.html">
-        <img src="Logo.png" alt="logo" class="logo">
-        </a>   
-        <h2 class="titulo">Cambiar contraseña</h2>
-        <div class="espaciovacio"></div>
-        </div>
+            <div class="zonedearriba">
+                <a href="pagina principal.html">
+                    <img src="Logo.png" alt="logo" class="logo">
+                </a>
+
+                <h2 class="titulo">Cambiar contraseña</h2>
+
+                <div class="espaciovacio"></div>
+            </div>
         </header>
+
+        <form id="loginForm">
+            <div class="contraseña">
+                <label for="password"><b>Contraseña actual</b></label>
+                <input required type="password" id="password" name="password">
+            </div>
+
+            <div class="contraseñnueva">
+                <label for="passwordnueva"><b>Contraseña nueva</b></label>
+                <input required type="password" id="passwordnueva" name="passwordnueva">
+            </div>
+
+            <div class="confirmarcontraseña">
+                <label for="Confirmarpassword"><b>Confirmar contraseña nueva</b></label>
+                <input required type="password" id="Confirmarpassword" name="Confirmarpassword">
+            </div>
+        </form>
+
+        <div class="botones">
+            <a href="perfil.html" class="volver">Volver</a>
+            <button type="submit" form="loginForm" class="cambiar">
+                Cambiar
+            </button>
+        </div>
     </main>
 </body>
 </html>
+```
