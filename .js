@@ -24,20 +24,24 @@ formLogin.addEventListener("submit", function(e) {
         return respuesta.json();
     })
 
-    .then(function(resultado) {
+    
+.then(function(resultado) {
 
-        if (!resultado.exito) {
+    if (!resultado.exito) {
+        mensaje.textContent = resultado.mensaje;
+        mensaje.style.color = "red";
+    } else {
 
-            mensaje.textContent = resultado.mensaje;
-            mensaje.style.color = "red";
+        localStorage.setItem(
+            "usuarioActual",
+            JSON.stringify(resultado.usuario)
+        );
 
-        } else {
+        window.location.href = "pagina principal.html";
+    }
 
-            window.location.href = "pagina principal.html";
+})
 
-        }
-
-    })
 
     .catch(function(error) {
 
