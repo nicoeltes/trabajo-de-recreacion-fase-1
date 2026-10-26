@@ -46,12 +46,17 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.botonlogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    height: 8rem;
+}
 
 .logo {
-    width: 7rem;
-    height: 7rem;
-    display: flex;
-    justify-content: flex-start;
+    width: 8rem;
+    height: 8rem;
 }
 
 .titulo {
@@ -107,28 +112,27 @@ body {
      margin-top: 1rem;
      margin-left: 30px;
 }
+
 .cambiarcontraseña{
-    width: 15rem;
-    height: 5rem;
-    background-color: #014A00;
-    color: #ffff;
-    border: 3px solid white;
-    border-radius: 10px;
-    font-size: 20px ;
+background-color: #014A00;
+color: white;
+width: 15rem;
+height: 5rem;
+border: 3px solid white;
+border-radius: 5px;
+
 }
 
-.btn-link{
-    display: flex;
-    justify-content: flex-end;
-    align-items: end;
-}
-.btn-link{
+.btn-link {
     text-decoration: none;
     color: white;
+    align-self: flex-end;
 }
 
-.btn-link :hover{
+.btn-link:hover .cambiarcontraseña {
     background-color: #027400;
-    text-decoration: none;
     color: white;
+}
+.estilo{
+    font-size: 15px ;
 }
