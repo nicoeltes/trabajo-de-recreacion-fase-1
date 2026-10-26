@@ -116,7 +116,7 @@ body {
 .cambiarcontraseña{
 background-color: #014A00;
 color: white;
-width: 15rem;
+width: 17rem;
 height: 5rem;
 border: 3px solid white;
 border-radius: 5px;
@@ -134,5 +134,5 @@ border-radius: 5px;
     color: white;
 }
 .estilo{
-    font-size: 15px ;
+    font-size: 25px ;
 }
