@@ -93,6 +93,7 @@ body {
     width: 30rem;
     font-size: 1rem;
     color: black;
+    font-size: 25px;
 }
 
 #loginForm input {
@@ -130,21 +131,20 @@ body {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-size: 15px;
 }
 
 .volver {
     background-color: transparent;
     color: white;
     font-family: 'Kyiv Type Sans', sans-serif;
-    font-size: 1.2rem;
+    font-size: 25px;
 }
 
 .cambiar {
     background-color: #014A00;
     color: white;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 1.2rem;
+    font-size: 25px;
     font-weight: bold;
     cursor: pointer;
 }
