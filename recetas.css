@@ -54,24 +54,26 @@ header {
 .logo {
     width: 8rem;
     height:8rem;
+    margin-top:-1.5rem;
 }
 
 
 
 .busqueda {
     position: absolute;
-    left: 200px;
     top: 2px;
+    left: 35%;
+    width: 10rem;
     display: flex;
     flex-direction: column;
-    
+    justify-content: flex-start;
 }
 
 .busqueda label {
     font-size: 20px;
     color: black;
+    text-align: left;
 }
-
 .busqueda input {
     width: 340px;
     height: 27px;
@@ -84,8 +86,6 @@ header {
    
 }
 
-/* BOTÓN AGREGAR */
-
 .agregar {
     position: absolute;
     right: 10px;
@@ -93,12 +93,12 @@ header {
 }
 
 .agregar button {
-    height: 39px;
+    height: 3rem;
     background-color: #014A00;
     border: 2px solid white;
     border-radius: 7px;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     padding: 0 8px;
     cursor: pointer;
 }
