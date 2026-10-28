@@ -1,31 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar recetas</title>
+    <title>Agregar receta</title>
     <link rel="stylesheet" href="agregar recetas.css">
-   
-
 </head>
+
 <body>
 
-<header>
-    <section class="logo">
-        <img src="logo.png" alt="logo">
-       <span>Comida Por <br> Gusto</span>
-      </section>  
+    <header class="nombredepestaña">
+        <a href="pagina principal.html">
+            <img src="Logo.png" alt="Logo de Comida Por Gusto" class="logo">
+        </a>
 
-      <h1><section class="text">Nombre de la receta</section></h1>
+        <h1 class="titulo">Agregar receta</h1>
 
-     <a href="recetas.html"> 
-        <button>volver</button>
-      </a>
-</header>
+        <a href="recetas.html" class="volver">Volver</a>
+    </header>
 
-<main>
-        
-</main>
-<script src="script.js"></script>
+    <main>
+        <form id="formularioReceta">
+
+            <section class="datosReceta">
+                <label for="nombre">Nombre de la receta</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="ingredientes">Ingredientes (enter para hacer listado)</label>
+                <textarea id="ingredientes" name="ingredientes" required></textarea>
+
+                <label for="instrucciones">Instrucciones (enter para hacer listado)</label>
+                <textarea id="instrucciones" name="instrucciones" required></textarea>
+            </section>
+
+            <section class="zonaFotos">
+                <label for="fotos" class="subirFotos">
+                    <span id="textoFotos">Subir fotos</span>
+                </label>
+                <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
+                <div id="vistaFotos"></div>
+            </section>
+
+            <button type="submit" class="botonSubir">Subir receta</button>
+
+            <p id="mensaje"></p>
+
+        </form>
+    </main>
+
+    <script src="agregar recetas.js"></script>
 </body>
+
 </html>

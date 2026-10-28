@@ -1,96 +1,221 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'Kyiv Type Sans';
+    src: url('./KyivTypeSans-Regular.woff2') format('woff2');
+}
+
+html, body {
     margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #349C26;
+    border: 3px solid #333333;
     min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.nombredepestaña {
+    height: 100px;
+    margin-top: 20px;
+    background-color: #58C44B;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding-top: 15px;
-    position: relative;
-    height: 100%;
-    background-color: #299000;
+    box-sizing: border-box;
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    
+.logo {
+    width: 8rem;
+    height: 8rem;
+    object-fit: contain;
 }
 
-/* LOGO */
-.logo { 
-    width: 184px;
-    height: 84px;
+.titulo {
+    font-size: 22px;
+    color: #014A00;
+}
+
+.volver {
+    width: 100px;
+    height: 40px;
+    margin-right: 40px;
+    background-color: #014A00;
+    border: 2px solid white;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: #FCEDFF;
-    color: #1d1f1d;
-
-    /* Igual que en la primera imagen */
-    border-radius: 0 0 30px 30px;
-
-    position: absolute;
-    left: -20px;
-    top: -15px;
-
-    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.logo img {
-    width: 40px;
+main {
+    padding: 30px 35px 25px;
+}
+
+#formularioReceta {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.datosReceta {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.datosReceta label {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.datosReceta input,
+.datosReceta textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 6px;
+    background-color: white;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 17px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.datosReceta input {
     height: 40px;
 }
 
-.logo span {
-    font-size: 16px;
-    font-weight: 600;
-    color: #163d17;
-    line-height: 1.1;
+.datosReceta textarea {
+    height: 120px;
+    resize: none;
 }
 
+.zonaFotos {
+    width: 48%;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
 
-/* TÍTULO */
-h1 {
-    width: 350px;
-    height: 125px;
+.subirFotos {
+    min-height: 220px;
+    border: 2px solid white;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 400;
-    background-color: #92F980;
-    color: #1b5e20;
-    border-radius: 10px;
-    margin: 0;
-   transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-
-/* BOTÓN */
-button {
-    position: absolute;
-    left: 1000px;
-    top: 0px;
-    background-color: #163d17;
     color: white;
-    border-color: white;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 16px;
+    font-size: 34px;
+    font-weight: bold;
     cursor: pointer;
-    width: 9rem ;
-    height: 6rem ;
+    text-align: center;
 }
 
-button:hover {
-    background-color: #0f2c10;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+#fotos {
+    display: none;
 }
 
-button:active {
-    transform: translateY(0);
-    box-shadow: none;
+#vistaFotos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+#vistaFotos img {
+    width: 90px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid white;
+}
+
+.botonSubir {
+    width: 200px;
+    height: 65px;
+    margin: 25px auto 0;
+    background-color: #014A00;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.volver:hover,
+.botonSubir:hover {
+    background-color: #026500;
+}
+
+#mensaje {
+    width: 100%;
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@media (max-width: 550px) {
+    .nombredepestaña {
+        gap: 10px;
+    }
+
+    .logo {
+        width: 55px;
+        height: 55px;
+    }
+
+    .titulo {
+        font-size: 16px;
+    }
+
+    .volver {
+        width: 75px;
+        margin-right: 5px;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    #formularioReceta {
+        flex-direction: column;
+    }
+
+    .datosReceta,
+    .zonaFotos {
+        width: 100%;
+    }
+
+    .zonaFotos {
+        margin-top: 10px;
+    }
+
+    .subirFotos {
+        min-height: 180px;
+        font-size: 28px;
+    }
+
+    .botonSubir {
+        margin: 20px auto;
+    }
 }

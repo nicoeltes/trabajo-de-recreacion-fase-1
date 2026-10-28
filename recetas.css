@@ -127,8 +127,8 @@ main {
 }
 
 .recetas {
-    width: 18.5%;
-    height: 153px;
+    width: 5rem;
+    height: 15rem;
     border: 2px solid white;
     border-radius: 6px;
     overflow: hidden;
@@ -136,7 +136,7 @@ main {
 }
 
 .foto {
-    height: 126px;
+    height: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
