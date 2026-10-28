@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receta</title>
+    <link rel="stylesheet" href="inforeceta.css">
+</head>
+<body>
+
+    <header class="nombredepestaña">
+        <a href="pagina principal.html">
+            <img src="Logo.png" class="logo" alt="Ir a la página principal">
+        </a>
+
+        <h1 id="nombreReceta" class="titulo">(Nombre de la receta)</h1>
+
+        <a href="recetas.html" class="volver">Volver</a>
+    </header>
+
+    <main>
+        <section class="zonaContenido">
+            <section class="zonaTexto">
+                <section class="ingredientes">
+                    <h2>Ingredientes:</h2>
+                    <ul id="ingredientesReceta"></ul>
+                </section>
+
+                <section class="instrucciones">
+                    <h2>Instrucciones:</h2>
+                    <ol id="instruccionesReceta"></ol>
+                </section>
+            </section>
+
+            <section class="fotos">
+                <h2>Foto/s</h2>
+                <section id="fotosReceta"></section>
+            </section>
+        </section>
+
+        <section class="zonaCalificacion">
+            <section class="calificacion">
+                <h2>Calificación:</h2>
+                <p id="promedioCalificacion">
+                    Todavía no hay calificaciones
+                </p>
+            </section>
+
+            <section class="botonCalificar">
+                <h2>Calificar receta</h2>
+
+                <section id="estrellasCalificar">
+                    <button type="button" data-valor="1">☆</button>
+                    <button type="button" data-valor="2">☆</button>
+                    <button type="button" data-valor="3">☆</button>
+                    <button type="button" data-valor="4">☆</button>
+                    <button type="button" data-valor="5">☆</button>
+                </section>
+
+                <button type="button" id="enviarCalificacion">
+                    Enviar calificación
+                </button>
+
+                <p id="mensajeCalificacion"></p>
+            </section>
+        </section>
+    </main>
+
+    <script src="ver receta.js"></script>
+</body>
+</html>
