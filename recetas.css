@@ -67,6 +67,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    
 }
 
 .busqueda label {
@@ -74,16 +75,26 @@ header {
     color: black;
     text-align: left;
 }
+.orden{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 2rem;
+    width: 25rem;
+    margin-left: -4rem;
+}
+.iconodefiltros{
+    height: 2rem;
+    width: 2rem;
+}
 .busqueda input {
-    width: 340px;
-    height: 27px;
+    width: 30rem;
+    height: 2rem;
     background-color: white;
     border: 2px solid white;
     border-radius: 7px;
     color: black;
     font-size: 16px;
-    padding-left: 8px;
-   
 }
 
 .agregar {
