@@ -1,71 +1,91 @@
 
-document.addEventListener("DOMContentLoaded", function () {
+const formulario = document.getElementById("loginForm");
 
-    const nombreDeUsuario = document.querySelector(".nombredeusuario");
-    const correo = document.querySelector(".correo");
-    const restriccion = document.querySelector(".restriccion");
-    const password = document.getElementById("password");
-    const mostrarPassword = document.getElementById("mostrarPassword");
-    const botonCambiar = document.querySelector(".btn-link");
+const contraseñaActual = document.getElementById("contraseñaActual");
+const contraseñaNueva = document.getElementById("contraseñaNueva");
+const confirmarContraseña = document.getElementById("confirmarContraseña");
+const mensaje = document.getElementById("mensaje");
 
-    // Mostrar los datos del usuario
-    const usuarioGuardado = localStorage.getItem("usuarioActual");
+formulario.addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-    if (usuarioGuardado) {
-        try {
+    mensaje.textContent = "";
+
+    if (
+        contraseñaActual.value === "" ||
+        contraseñaNueva.value === "" ||
+        confirmarContraseña.value === ""
+    ) {
+        mensaje.textContent = "Completá todos los campos.";
+        mensaje.style.color = "red";
+        return;
+    }
+
+    if (contraseñaNueva.value !== confirmarContraseña.value) {
+        mensaje.textContent = "Las contraseñas nuevas no coinciden.";
+        mensaje.style.color = "red";
+        return;
+    }
+
+    if (contraseñaActual.value === contraseñaNueva.value) {
+        mensaje.textContent =
+            "La nueva contraseña debe ser diferente de la actual.";
+        mensaje.style.color = "red";
+        return;
+    }
+
+    try {
+        const respuesta = await fetch(
+            "http://localhost:3000/cambiar-contraseña",
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                    contraseñaActual: contraseñaActual.value,
+                    contraseñaNueva: contraseñaNueva.value
+                })
+            }
+        );
+
+        const resultado = await respuesta.json();
+
+        if (!respuesta.ok) {
+            mensaje.textContent =
+                resultado.mensaje ||
+                "No se pudo cambiar la contraseña.";
+            mensaje.style.color = "red";
+            return;
+        }
+
+        const usuarioGuardado = localStorage.getItem("usuarioActual");
+
+        if (usuarioGuardado) {
             const usuario = JSON.parse(usuarioGuardado);
 
-            nombreDeUsuario.textContent =
-                "Nombre de usuario: " + (usuario.usuario || "No disponible");
+            delete usuario.password;
 
-            correo.textContent =
-                "Correo electrónico: " + (usuario.email || "No disponible");
-
-            let preferencias = usuario.preferencias;
-
-            if (Array.isArray(preferencias)) {
-                preferencias = preferencias.join(", ");
-            }
-
-            restriccion.textContent =
-                "Restricción alimenticia: " +
-                (preferencias || "No disponible");
-
-        } catch (error) {
-            console.error("Error al cargar los datos del usuario:", error);
+            localStorage.setItem(
+                "usuarioActual",
+                JSON.stringify(usuario)
+            );
         }
+
+        mensaje.textContent =
+            resultado.mensaje ||
+            "La contraseña se cambió correctamente.";
+
+        mensaje.style.color = "green";
+
+        formulario.reset();
+
+    } catch (error) {
+        console.error("Error al cambiar la contraseña:", error);
+
+        mensaje.textContent =
+            "No se pudo conectar con el servidor.";
+        mensaje.style.color = "red";
     }
-
-    // Ajustar el ancho según la longitud de la contraseña
-    function ajustarAnchoPassword() {
-        password.style.width =
-            Math.max(30, password.value.length * 15) + "px";
-    }
-
-    if (password) {
-        ajustarAnchoPassword();
-    }
-
-    // Mostrar u ocultar la contraseña
-    if (password && mostrarPassword) {
-        mostrarPassword.addEventListener("click", function () {
-
-            if (password.type === "password") {
-                password.type = "text";
-            } else {
-                password.type = "password";
-            }
-
-            ajustarAnchoPassword();
-        });
-    }
-
-    // Ir a cambiar contraseña
-    if (botonCambiar) {
-        botonCambiar.addEventListener("click", function (evento) {
-            evento.preventDefault();
-            window.location.href = "cambiarcontraseña.html";
-        });
-    }
-
 });

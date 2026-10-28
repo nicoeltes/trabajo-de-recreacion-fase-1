@@ -27,7 +27,7 @@ function obtenerPreferencias() {
     return preferencias;
 }
 
-formulario.addEventListener("submit", async function (evento) {
+formulario.addEventListener("submit", async function(evento) {
     evento.preventDefault();
 
     mensaje.textContent = "";
@@ -46,16 +46,20 @@ formulario.addEventListener("submit", async function (evento) {
         !confirmarPassword.value
     ) {
         mensaje.textContent = "Completá todos los campos.";
+        mensaje.style.color = "red";
         return;
     }
 
     if (datosCuenta.password !== confirmarPassword.value) {
         mensaje.textContent = "Las contraseñas no coinciden.";
+        mensaje.style.color = "red";
         return;
     }
 
     if (datosCuenta.preferencias.length === 0) {
-        mensaje.textContent = "Debés seleccionar al menos una restricción alimenticia.";
+        mensaje.textContent =
+            "Debés seleccionar al menos una restricción alimenticia.";
+        mensaje.style.color = "red";
         return;
     }
 
@@ -75,16 +79,23 @@ formulario.addEventListener("submit", async function (evento) {
                 resultado.mensaje ||
                 resultado.message ||
                 "No se pudo crear la cuenta.";
+
+            mensaje.style.color = "red";
             return;
         }
 
-        mensaje.textContent = "¡La cuenta se creó correctamente!";
+        mensaje.textContent =
+            resultado.mensaje || "¡La cuenta se creó correctamente!";
+
+        mensaje.style.color = "green";
         formulario.reset();
 
     } catch (error) {
+        console.error("Error al crear la cuenta:", error);
+
         mensaje.textContent =
             "No se pudo conectar con el servidor. Verificá que esté iniciado.";
 
-        console.error("Error al crear la cuenta:", error);
+        mensaje.style.color = "red";
     }
 });
