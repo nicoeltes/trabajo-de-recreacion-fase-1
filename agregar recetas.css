@@ -9,6 +9,7 @@ html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -20,14 +21,14 @@ body {
 }
 
 .nombredepestaña {
-    height: 100px;
+    height: 4rem;
+    width: 100%;
     margin-top: 20px;
     background-color: #58C44B;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 15px;
     box-sizing: border-box;
 }
 
@@ -150,7 +151,7 @@ main {
 .botonSubir {
     width: 200px;
     height: 65px;
-    margin: 25px auto 0;
+    margin: 10px auto 0;
     background-color: #014A00;
     border: 2px solid white;
     border-radius: 5px;
@@ -159,6 +160,9 @@ main {
     font-size: 19px;
     font-weight: bold;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .volver:hover,
