@@ -24,6 +24,34 @@
                     <button type="button" id="botonFiltros" class="botonFiltros">
                         <img src="iconodefiltros.png" alt="Filtros" class="iconodefiltros">
                     </button>
+
+                    <div id="panelFiltros" class="panelFiltros">
+                        <h3>Filtrar recetas</h3>
+
+                        <label for="filtroCalificacion">Calificación:</label>
+                        <select id="filtroCalificacion">
+                            <option value="">Todas</option>
+                            <option value="4">4 estrellas o más</option>
+                            <option value="3">3 estrellas o más</option>
+                            <option value="2">2 estrellas o más</option>
+                        </select>
+
+                        <label for="filtroRestriccion">Restricción alimentaria:</label>
+                        <select id="filtroRestriccion">
+                            <option value="">Todas</option>
+                            <option value="celiaco">Celíacas</option>
+                            <option value="vegano">Veganas</option>
+                            <option value="vegetariano">Vegetarianas</option>
+                        </select>
+
+                        <button type="button" id="aplicarFiltros">
+                            Aplicar filtros
+                        </button>
+
+                        <button type="button" id="limpiarFiltros">
+                            Limpiar filtros
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -38,19 +66,8 @@
     <main>
         <section id="zone">
         </section>
-    
     </main>
 
-
-
-<div class="PadrePrincipal" id="PadrePrincipalID">
-<div class="Sombreado" id="SombreadoID"></div>
- <div class="ElDivPadre">
-    <header class="FitrosYX">
-        
-    </header>
- </div>
-</div>
     <script src="recetas.js"></script>
 
 </body>
