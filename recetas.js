@@ -3,10 +3,11 @@ const zonaRecetas = document.getElementById("zone");
 
 const botonFiltros = document.getElementById("botonFiltros");
 const panelFiltros = document.getElementById("panelFiltros");
-const filtroCalificacion = document.getElementById("filtroCalificacion");
-const filtroRestriccion = document.getElementById("filtroRestriccion");
-const aplicarFiltros = document.getElementById("aplicarFiltros");
+const cerrarFiltros = document.getElementById("cerrarFiltros");
 const limpiarFiltros = document.getElementById("limpiarFiltros");
+
+const opcionesCalificacion = document.querySelectorAll(".opcionesCalificacion input");
+const opcionesRestriccion = document.querySelectorAll(".opcionesRestriccion input");
 
 let todasLasRecetas = [];
 
@@ -71,41 +72,75 @@ function mostrarRecetas(recetas) {
     });
 }
 
-botonFiltros.addEventListener("click", function() {
-    panelFiltros.classList.toggle("mostrar");
-});
+function aplicarFiltros() {
+    const calificacionesSeleccionadas = Array.from(opcionesCalificacion)
+        .filter(function(opcion) {
+            return opcion.checked;
+        })
+        .map(function(opcion) {
+            return Number(opcion.value);
+        });
 
-aplicarFiltros.addEventListener("click", function() {
-    const calificacionMinima = Number(filtroCalificacion.value);
-    const restriccion = filtroRestriccion.value;
+    const restriccionesSeleccionadas = Array.from(opcionesRestriccion)
+        .filter(function(opcion) {
+            return opcion.checked;
+        })
+        .map(function(opcion) {
+            return opcion.value;
+        });
+
+    const calificacionMinima = calificacionesSeleccionadas.length > 0
+        ? Math.min(...calificacionesSeleccionadas)
+        : 0;
 
     const recetasFiltradas = todasLasRecetas.filter(function(receta) {
         const calificacion = Number(receta.calificacion || 0);
 
         const cumpleCalificacion =
-            filtroCalificacion.value === "" ||
+            calificacionesSeleccionadas.length === 0 ||
             calificacion >= calificacionMinima;
 
-        let cumpleRestriccion = true;
-
-        if (restriccion !== "") {
-            cumpleRestriccion =
-                receta[restriccion] === true ||
-                receta[restriccion] === "true" ||
-                (Array.isArray(receta.restricciones) &&
-                 receta.restricciones.includes(restriccion));
-        }
+        const cumpleRestriccion =
+            restriccionesSeleccionadas.length === 0 ||
+            restriccionesSeleccionadas.some(function(restriccion) {
+                return (
+                    receta[restriccion] === true ||
+                    receta[restriccion] === "true" ||
+                    (Array.isArray(receta.restricciones) &&
+                     receta.restricciones.includes(restriccion))
+                );
+            });
 
         return cumpleCalificacion && cumpleRestriccion;
     });
 
     mostrarRecetas(recetasFiltradas);
+}
+
+botonFiltros.addEventListener("click", function() {
+    panelFiltros.classList.toggle("mostrar");
+});
+
+cerrarFiltros.addEventListener("click", function() {
     panelFiltros.classList.remove("mostrar");
 });
 
+opcionesCalificacion.forEach(function(opcion) {
+    opcion.addEventListener("change", aplicarFiltros);
+});
+
+opcionesRestriccion.forEach(function(opcion) {
+    opcion.addEventListener("change", aplicarFiltros);
+});
+
 limpiarFiltros.addEventListener("click", function() {
-    filtroCalificacion.value = "";
-    filtroRestriccion.value = "";
+    opcionesCalificacion.forEach(function(opcion) {
+        opcion.checked = false;
+    });
+
+    opcionesRestriccion.forEach(function(opcion) {
+        opcion.checked = false;
+    });
 
     mostrarRecetas(todasLasRecetas);
 });

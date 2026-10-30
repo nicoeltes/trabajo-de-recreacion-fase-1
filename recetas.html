@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,51 +16,104 @@
                 <img src="Logo.png" alt="logo" class="logo">
             </a>
 
-            <section class="busqueda">
-                <label for="busqueda"><b>Buscar receta</b></label>
+            <div class="espacioBuscador"></div>
 
-                <div class="orden">
-                    <input type="text" id="busqueda">
+            <div class="zonaBusqueda">
 
-                    <button type="button" id="botonFiltros" class="botonFiltros">
-                        <img src="iconodefiltros.png" alt="Filtros" class="iconodefiltros">
-                    </button>
+                <section class="busqueda">
+                    <label for="busqueda"><b>Buscar receta</b></label>
 
-                    <div id="panelFiltros" class="panelFiltros">
-                        <h3>Filtrar recetas</h3>
+                    <div class="orden">
+                        <input type="text" id="busqueda">
 
-                        <label for="filtroCalificacion">Calificación:</label>
-                        <select id="filtroCalificacion">
-                            <option value="">Todas</option>
-                            <option value="4">4 estrellas o más</option>
-                            <option value="3">3 estrellas o más</option>
-                            <option value="2">2 estrellas o más</option>
-                        </select>
-
-                        <label for="filtroRestriccion">Restricción alimentaria:</label>
-                        <select id="filtroRestriccion">
-                            <option value="">Todas</option>
-                            <option value="celiaco">Celíacas</option>
-                            <option value="vegano">Veganas</option>
-                            <option value="vegetariano">Vegetarianas</option>
-                        </select>
-
-                        <button type="button" id="aplicarFiltros">
-                            Aplicar filtros
+                        <button type="button" id="botonFiltros" class="botonFiltros">
+                            <img src="iconodefiltros.png" alt="Filtros" class="iconodefiltros">
                         </button>
 
-                        <button type="button" id="limpiarFiltros">
-                            Limpiar filtros
-                        </button>
+                        <div id="panelFiltros" class="panelFiltros">
+
+                            <div class="parteSuperiorFiltros">
+                                <button type="button" id="cerrarFiltros" class="cerrarFiltros">
+                                    ✕
+                                </button>
+                            </div>
+
+                            <h3>Filtros</h3>
+
+                            <div class="contenidoFiltros">
+
+                                <details class="desplegableFiltro">
+                                    <summary>Filtrar por calificación</summary>
+
+                                    <div class="opcionesCalificacion">
+
+                                        <label>
+                                            <input type="checkbox" value="5">
+                                            <span>★★★★★</span>
+                                        </label>
+
+                                        <label>
+                                            <input type="checkbox" value="4">
+                                            <span>★★★★☆</span>
+                                        </label>
+
+                                        <label>
+                                            <input type="checkbox" value="3">
+                                            <span>★★★☆☆</span>
+                                        </label>
+
+                                        <label>
+                                            <input type="checkbox" value="2">
+                                            <span>★★☆☆☆</span>
+                                        </label>
+
+                                        <label>
+                                            <input type="checkbox" value="1">
+                                            <span>★☆☆☆☆</span>
+                                        </label>
+
+                                    </div>
+                                </details>
+
+                                <details class="desplegableFiltro">
+                                    <summary>Filtrar por restricción</summary>
+
+                                    <div class="opcionesRestriccion">
+
+                                        <label>
+                                            <input type="checkbox" value="celiaco">
+                                            <img src="celiacosimbolo.png" alt="Celíaco">
+                                        </label>
+
+                                        <label>
+                                            <input type="checkbox" value="vegano">
+                                            <img src="veganosimbolo.png" alt="Vegano">
+                                        </label>
+
+                                        <label>
+                                            <input type="checkbox" value="vegetariano">
+                                            <img src="vegetarianosimbolo.png" alt="Vegetariano">
+                                        </label>
+
+                                    </div>
+                                </details>
+
+                                <button type="button" id="limpiarFiltros">
+                                    Eliminar filtros
+                                </button>
+
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="agregar">
-                <a href="agregar recetas.html">
-                    <button><b> + Agregar receta</b></button>
-                </a>
-            </section>
+                <section class="agregar">
+                    <a href="agregar recetas.html">
+                        <button><b> + Agregar receta</b></button>
+                    </a>
+                </section>
+
+            </div>
         </div>
     </header>
 
