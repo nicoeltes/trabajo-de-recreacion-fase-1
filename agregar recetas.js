@@ -84,6 +84,25 @@ formulario.addEventListener("submit", async function(event) {
         )
     );
 
+    const restricciones = [];
+
+    if (document.getElementById("celiaco").checked) {
+        restricciones.push("celiaco");
+    }
+
+    if (document.getElementById("veganismo").checked) {
+        restricciones.push("veganismo");
+    }
+
+    if (document.getElementById("vegetarianismo").checked) {
+        restricciones.push("vegetarianismo");
+    }
+
+    datosReceta.append(
+        "restricciones",
+        JSON.stringify(restricciones)
+    );
+
     Array.from(fotos.files).forEach(function(foto) {
         datosReceta.append("fotos", foto);
     });
