@@ -183,51 +183,7 @@ main {
     font-weight: bold;
 }
 
-@media (max-width: 550px) {
-    .nombredepestaña {
-        gap: 10px;
-    }
 
-    .logo {
-        width: 55px;
-        height: 55px;
-    }
-
-    .titulo {
-        font-size: 16px;
-    }
-
-    .volver {
-        width: 75px;
-        margin-right: 5px;
-    }
-
-    main {
-        padding: 20px;
-    }
-
-    #formularioReceta {
-        flex-direction: column;
-    }
-
-    .datosReceta,
-    .zonaFotos {
-        width: 100%;
-    }
-
-    .zonaFotos {
-        margin-top: 10px;
-    }
-
-    .subirFotos {
-        min-height: 180px;
-        font-size: 28px;
-    }
-
-    .botonSubir {
-        margin: 20px auto;
-    }
-}
 
 .preferencias {
     display: flex;

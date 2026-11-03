@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,26 +14,28 @@
 <body>
 
     <div id="mapa"></div>
-    <div id="filtros">
-    <label>
-        <input type="checkbox" id="filtroCeliacos">
-        Celíacos
-    </label>
 
-    <label>
-        <input type="checkbox" id="filtroVeganos">
-        Veganos
-    </label>
+    <div class="elementosMapa">
 
-    <label>
-        <input type="checkbox" id="filtroVegetarianos">
-        Vegetarianos
-    </label>
-</div>
+        <a href="pagina principal.html">
+            <img src="Logo.png" alt="Logo" class="logo">
+        </a>
 
+        <div class="buscador">
+
+            <input type="text" id="busquedaLocal" placeholder="Buscar local">
+<a href="agregar locales.html">
+            <button type="button" id="botonAgregarLocal">
+                + Agregar local
+            </button>
+</a>
+        </div>
+
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="mapa.js"></script>
 
 </body>
+
 </html>

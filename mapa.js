@@ -1,8 +1,8 @@
 
-const mapa = L.map("mapa").setView([-34.6037, -58.3816], 13);
+const mapa = L.map("mapa").setView([-34.6037, -58.3816], 14);
 
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; OpenStreetMap',
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+    attribution: '&copy; Esri',
     maxZoom: 19
 }).addTo(mapa);
 
@@ -11,102 +11,109 @@ const marcadores = [];
 async function buscarLocales() {
 
     const consulta = `
-        [out:json];
+        [out:json][timeout:30];
         (
-            node["amenity"~"restaurant|cafe|fast_food"](around:3000,-34.6037,-58.3816);
-            way["amenity"~"restaurant|cafe|fast_food"](around:3000,-34.6037,-58.3816);
-            relation["amenity"~"restaurant|cafe|fast_food"](around:3000,-34.6037,-58.3816);
+            nwr["amenity"~"restaurant|cafe|fast_food"](around:10000,-34.6037,-58.3816);
         );
-        out center tags;
+        out center tags 100;
     `;
 
-    try {
+    const servidores = [
+        "https://overpass-api.de/api/interpreter",
+        "https://overpass.kumi.systems/api/interpreter",
+        "https://overpass.nchc.org.tw/api/interpreter"
+    ];
 
-        const respuesta = await fetch(
-            "https://overpass-api.de/api/interpreter",
-            {
+    let datos = null;
+
+    for (const servidor of servidores) {
+
+        try {
+
+            console.log("Probando servidor:", servidor);
+
+            const respuesta = await fetch(servidor, {
                 method: "POST",
                 body: new URLSearchParams({
                     data: consulta
                 })
-            }
-        );
-
-        if (!respuesta.ok) {
-            throw new Error("No se pudieron obtener los locales.");
-        }
-
-        const datos = await respuesta.json();
-
-        datos.elements.forEach(function(local) {
-
-            const latitud = local.lat ?? local.center?.lat;
-            const longitud = local.lon ?? local.center?.lon;
-
-            if (latitud === undefined || longitud === undefined) {
-                return;
-            }
-
-            const nombre = local.tags.name || "Local gastronómico";
-
-            const vegetariano = local.tags.vegetarian === "yes";
-            const vegano = local.tags.vegan === "yes";
-            const celiaco = local.tags.gluten_free === "yes";
-
-            const marcador = L.marker([latitud, longitud])
-                .bindPopup(`
-                    <b>${nombre}</b>
-                    <p>Vegetariano: ${vegetariano ? "Sí" : "Sin información"}</p>
-                    <p>Vegano: ${vegano ? "Sí" : "Sin información"}</p>
-                    <p>Celíaco: ${celiaco ? "Sí" : "Sin información"}</p>
-                `);
-
-            marcadores.push({
-                marcador: marcador,
-                vegetariano: vegetariano,
-                vegano: vegano,
-                celiaco: celiaco
             });
 
-        });
+            if (!respuesta.ok) {
+                throw new Error("Error HTTP: " + respuesta.status);
+            }
 
-        aplicarFiltros();
+            datos = await respuesta.json();
 
-    } catch (error) {
+            console.log("Locales encontrados:", datos.elements.length);
 
-        console.error("Error al buscar locales:", error);
+            break;
+
+        } catch (error) {
+
+            console.error("Falló el servidor:", error);
+
+        }
 
     }
+
+    if (!datos) {
+        console.error("Ningún servidor pudo devolver los locales.");
+        return;
+    }
+
+    datos.elements.forEach(function(local) {
+
+        const latitud = local.lat ?? local.center?.lat;
+        const longitud = local.lon ?? local.center?.lon;
+
+        if (latitud === undefined || longitud === undefined) {
+            return;
+        }
+
+        const etiquetas = local.tags || {};
+
+        const nombre = etiquetas.name || "Local gastronómico";
+
+        const marcador = L.marker([latitud, longitud])
+            .bindPopup(`
+                <b>${nombre}</b>
+            `);
+
+        marcadores.push({
+            marcador: marcador,
+            nombre: nombre
+        });
+
+    });
+
+    console.log("Marcadores creados:", marcadores.length);
+
+    aplicarBusqueda();
+
 }
 
 
-function aplicarFiltros() {
+function aplicarBusqueda() {
 
-    const filtroCeliacos = document.getElementById("filtroCeliacos").checked;
-    const filtroVeganos = document.getElementById("filtroVeganos").checked;
-    const filtroVegetarianos = document.getElementById("filtroVegetarianos").checked;
+    const busqueda = document.getElementById("busquedaLocal").value.toLowerCase();
 
     marcadores.forEach(function(local) {
 
-        const cumpleCeliacos = !filtroCeliacos || local.celiaco;
-        const cumpleVeganos = !filtroVeganos || local.vegano;
-        const cumpleVegetarianos = !filtroVegetarianos || local.vegetariano;
+        const cumpleBusqueda = local.nombre.toLowerCase().includes(busqueda);
 
-        if (cumpleCeliacos && cumpleVeganos && cumpleVegetarianos) {
+        if (cumpleBusqueda) {
             local.marcador.addTo(mapa);
         } else {
             mapa.removeLayer(local.marcador);
         }
 
     });
+
 }
 
 
-document.getElementById("filtroCeliacos").addEventListener("change", aplicarFiltros);
-
-document.getElementById("filtroVeganos").addEventListener("change", aplicarFiltros);
-
-document.getElementById("filtroVegetarianos").addEventListener("change", aplicarFiltros);
+document.getElementById("busquedaLocal").addEventListener("input", aplicarBusqueda);
 
 
 buscarLocales();
