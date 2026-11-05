@@ -50,6 +50,7 @@ body {
     height: 8rem;
     display: flex;
     justify-content: flex-start;
+    margin-left: 2rem;
 }
 
 .titulo {
@@ -59,6 +60,7 @@ body {
     display: flex;
     justify-content: center;
     color: #014A00;
+    margin-right: 4rem;
 }
 
 .espaciovacio {

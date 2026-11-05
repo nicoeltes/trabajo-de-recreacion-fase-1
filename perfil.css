@@ -57,6 +57,7 @@ body {
 .logo {
     width: 8rem;
     height: 8rem;
+    margin-right: -3rem;
 }
 
 .titulo {
@@ -82,8 +83,8 @@ body {
     display: flex;
     justify-content: start;
     color: #ffff;
-    margin-top: 5rem ;
-    margin-left: 3rem;
+    margin-left: 4rem;
+    margin-top: 3rem;
 }
 .orden{
     display:flex;
@@ -94,11 +95,10 @@ body {
 .Informacion{
     width: 60% ;
     height: 75%;
-    margin-left: 2rem ;
+    margin-left: 4rem ;
     background-color: #014A00;
     border: 3px solid white;
     border-radius: 10px;
-    margin-top: -1rem;
 }
 
 .datos{

@@ -53,23 +53,22 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
 }
 
 .logo {
     width: 8rem;
     height: 8rem;
-    
+    margin-right: 3rem;
 }
 
-.espacioBuscador {
-    flex: 0 0 27%;
-}
+
 
 .zonaBusqueda {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 2rem;
+    gap: 32px;
 }
 
 .busqueda {
@@ -77,6 +76,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    margin-right: 5rem;
 }
 
 .busqueda label {

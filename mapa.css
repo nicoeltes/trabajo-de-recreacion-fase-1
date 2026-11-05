@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'Kyiv Type Sans';
+    src: url('./KyivTypeSans-Regular.woff2') format('woff2');
+}
 
 html,
 body {
@@ -51,7 +57,7 @@ body {
 .buscador button {
     padding: 1rem;
     border: none;
-    border-radius: 1rem;
+    border-radius: 5px;
     background-color: #014A00;
     border: 3px solid white;
     color: white;
@@ -60,4 +66,9 @@ body {
 }
 .leaflet-top {
     top: 8rem;
+}
+.mas{
+    width: 30px;
+    height: 30px;
+
 }

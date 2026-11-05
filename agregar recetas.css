@@ -28,7 +28,6 @@ body {
     background-color: #58C44B;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
 }
@@ -37,11 +36,15 @@ body {
     width: 8rem;
     height: 8rem;
     object-fit: contain;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .titulo {
     font-size: 22px;
     color: #014A00;
+    display: flex;
+    justify-content: center;
 }
 
 .volver {
@@ -58,6 +61,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 3rem;
 }
 
 main {

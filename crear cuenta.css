@@ -67,30 +67,30 @@ form {
     width: 50%;
     height: 100%;
     font-family: 'Noto Sans', sans-serif;
-    gap: 2rem;
+    gap: 1rem;
     box-sizing: border-box;
 }
 
 form label {
     width: 20rem;
-    max-width: 80vw;
     margin-bottom: 0.3rem;
-    color: white;
-    font-size: 1.125rem;
+    color: black;
+    font-size: 1.1rem;
     text-align: left;
+    margin-left: 2rem;
 }
 
 form input {
-    width: 20rem;
-    max-width: 80vw;
+    width: 30rem;
     padding: 0.75rem 1rem;
     margin-bottom: 0.3rem;
     background-color: white;
-    border: 0.06rem solid white;
+    border: 3px solid white;
     border-radius: 0.5rem;
     font-size: 1rem;
     outline: none;
     box-sizing: border-box;
+    margin-left: 2rem;
 }
 
 
@@ -154,6 +154,7 @@ form input {
     align-items: flex-start;
     gap: 3.5rem;
     width: 100%;
+    margin-left: 2rem;
 }
 
 

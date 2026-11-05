@@ -4,48 +4,72 @@ const direccion = document.getElementById("direccion");
 const menu = document.getElementById("menu");
 const fotos = document.getElementById("fotos");
 const nombreFotos = document.getElementById("nombre-fotos");
-const mapa = document.querySelector(".mapa-contenedor");
-const marcador = document.getElementById("marcador");
 const estadoMapa = document.getElementById("estado-mapa");
-const botonAgregar = document.querySelector(".botonesdelfooter button.Añadir");
+
+const botonAgregar = document.querySelector(".boton-anadir");
 
 let ubicacionSeleccionada = false;
 let coordenadas = null;
+let marcador = null;
+
+// CREAR MAPA
+
+const mapaLocal = L.map("mapaLocal", {
+    attributionControl: false
+}).setView([-34.6037, -58.3816], 13);
+
+L.control.attribution({
+    prefix: false
+}).addTo(mapaLocal);
+
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+    attribution: "Tiles © Esri",
+    maxZoom: 16
+}).addTo(mapaLocal);
+
+// SELECCIONAR UBICACION
+
+mapaLocal.on("click", function (evento) {
+
+    const latitud = evento.latlng.lat;
+    const longitud = evento.latlng.lng;
+
+    coordenadas = {
+        lat: latitud,
+        lng: longitud
+    };
+
+    if (marcador) {
+        mapaLocal.removeLayer(marcador);
+    }
+
+    marcador = L.marker([latitud, longitud]).addTo(mapaLocal);
+
+    marcador.bindPopup("Ubicación de tu local").openPopup();
+
+    ubicacionSeleccionada = true;
+
+    estadoMapa.textContent = "Ubicación seleccionada";
+
+});
+
+// MOSTRAR NOMBRES DE LAS FOTOS
 
 fotos.addEventListener("change", function () {
 
     nombreFotos.textContent = "";
 
     if (fotos.files.length > 0) {
+
         const nombres = Array.from(fotos.files).map(foto => foto.name);
+
         nombreFotos.textContent = nombres.join(", ");
+
     }
 
 });
 
-mapa.addEventListener("click", function (evento) {
-
-    const rectangulo = mapa.getBoundingClientRect();
-
-    const x = evento.clientX - rectangulo.left;
-    const y = evento.clientY - rectangulo.top;
-
-    marcador.textContent = "📍";
-
-    marcador.style.position = "absolute";
-    marcador.style.left = x + "px";
-    marcador.style.top = y + "px";
-
-    ubicacionSeleccionada = true;
-
-    coordenadas = {
-        x: x,
-        y: y
-    };
-
-    estadoMapa.textContent = "Ubicación seleccionada";
-
-});
+// AGREGAR LOCAL
 
 botonAgregar.addEventListener("click", async function () {
 
@@ -84,6 +108,7 @@ botonAgregar.addEventListener("click", async function () {
     datosLocal.append("direccion", direccion.value);
     datosLocal.append("menu", menu.value);
     datosLocal.append("preferencias", JSON.stringify(preferencias));
+
     datosLocal.append("coordenadas", JSON.stringify(coordenadas));
 
     for (let i = 0; i < fotos.files.length; i++) {
@@ -108,6 +133,7 @@ botonAgregar.addEventListener("click", async function () {
     } catch (error) {
 
         console.error(error);
+
         alert("No se pudo conectar con el servidor");
 
     }

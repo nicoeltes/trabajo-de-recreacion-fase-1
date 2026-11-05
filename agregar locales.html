@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,7 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar local</title>
+
     <link rel="stylesheet" href="agregar locales.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 
 <body>
@@ -17,13 +22,14 @@
         </a>
 
         <h2>Agregar local</h2>
+
         <a href="mapa.html">
             <button class="boton-volver">
                 Volver al mapa
             </button>
         </a>
-    </header>
 
+    </header>
 
     <main class="contenedor">
 
@@ -47,7 +53,8 @@
             <div class="subir-fotos">
 
                 <label for="fotos" class="boton-fotos">
-                    Subir foto/s <img src="simbolodescarga.png" alt="simbolodescarga">
+                    Subir foto/s
+                    <img src="simbolodescarga.png" alt="simbolodescarga">
                 </label>
 
                 <input type="file" id="fotos" accept="image/*" multiple>
@@ -58,42 +65,50 @@
 
         </section>
 
-
         <section class="mapa">
 
             <div class="mapa-contenedor">
 
-                <h2>Marca tu local en el mapa</h2>
+                <div id="mapaLocal"></div>
 
-                <span id="marcador"></span>
+                <h2>Marca tu local en el mapa</h2>
 
             </div>
 
             <p id="estado-mapa"></p>
+
             <section class="categorias">
+
                 <div class="opcionceliaco">
+
                     <input type="checkbox" id="celiaco" name="preferencias" value="celiaco">
+
                     <label for="celiaco">
                         <img src="celiacosimbolo.png" alt="Celíaco">
                         <div class="palabradesimbolo">Celíaco</div>
                     </label>
+
                 </div>
 
                 <div class="opcionveganismo">
+
                     <input type="checkbox" id="veganismo" name="preferencias" value="veganismo">
+
                     <label for="veganismo">
                         <img src="veganosimbolo.png" alt="Veganismo">
                         <div class="palabradesimbolo">Veganismo</div>
                     </label>
+
                 </div>
 
                 <div class="opcionvegetarianismo">
+
                     <input type="checkbox" id="vegetarianismo" name="preferencias" value="vegetarianismo">
+
                     <label for="vegetarianismo">
                         <img src="vegetarianosimbolo.png" alt="Vegetarianismo">
                         <div class="palabradesimbolo">Vegetarianismo</div>
                     </label>
-                </div>
 
                 </div>
 
@@ -101,23 +116,23 @@
 
         </section>
 
-
-
-
-
         <footer class="botonesdelfooter">
+
             <a href="mapa.html">
                 <button class="Volver">
                     <h2>Volver al mapa</h2>
                 </button>
             </a>
-            <button class=" Añadir local">
+
+            <button class="boton-anadir">
                 <h2>Añadir</h2>
             </button>
 
         </footer>
 
     </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script src="agregar locales.js"></script>
 

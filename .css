@@ -122,14 +122,14 @@ form input {
 .logo {
     width: 20rem;
     height: 20rem;
-    margin-top: 1.25rem;
+    margin-top: 1rem;
 }
 
 .cuadradodelslogan {
     height: 12rem;
     width: 23rem;
     background-color: #92F980;
-    margin-top: 1.875rem;
+    margin-top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
