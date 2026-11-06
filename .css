@@ -120,8 +120,8 @@ form input {
 }
 
 .logo {
-    width: 20rem;
-    height: 20rem;
+    width: 17em;
+    height: 17rem;
     margin-top: 1rem;
 }
 
@@ -129,7 +129,7 @@ form input {
     height: 12rem;
     width: 23rem;
     background-color: #92F980;
-    margin-top: 0;
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;

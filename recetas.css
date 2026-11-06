@@ -57,9 +57,9 @@ header {
 }
 
 .logo {
-    width: 8rem;
-    height: 8rem;
-    margin-right: 3rem;
+   scale: 0.52;
+    display: flex;
+    justify-content: flex-start;
 }
 
 

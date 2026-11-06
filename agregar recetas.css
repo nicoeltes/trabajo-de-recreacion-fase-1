@@ -1,10 +1,13 @@
 
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
 
 @font-face {
     font-family: 'Kyiv Type Sans';
     src: url('./KyivTypeSans-Regular.woff2') format('woff2');
 }
+
 
 html, body {
     margin: 0;
@@ -12,6 +15,7 @@ html, body {
     min-height: 100%;
     overflow: hidden;
 }
+
 
 body {
     font-family: 'Noto Sans', sans-serif;
@@ -21,31 +25,33 @@ body {
     box-sizing: border-box;
 }
 
+
 .nombredepestaña {
     height: 4rem;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 1.5rem;
     background-color: #58C44B;
     display: flex;
     flex-direction: row;
     align-items: center;
-    box-sizing: border-box;
+    position: relative;
 }
 
+
 .logo {
-    width: 8rem;
-    height: 8rem;
-    object-fit: contain;
+    scale: 0.52;
     display: flex;
     justify-content: flex-start;
 }
 
+
 .titulo {
     font-size: 22px;
     color: #014A00;
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    left: 35rem;
 }
+
 
 .volver {
     width: 100px;
@@ -61,12 +67,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 3rem;
+    position: absolute;
+    right: 10rem;
 }
+
 
 main {
     padding: 30px 35px 25px;
+    margin-left: 2rem;
 }
+
 
 #formularioReceta {
     display: flex;
@@ -76,6 +86,7 @@ main {
     align-items: flex-start;
 }
 
+
 .datosReceta {
     width: 48%;
     display: flex;
@@ -84,11 +95,13 @@ main {
     margin-top:-1rem;
 }
 
+
 .datosReceta label {
     font-size: 19px;
     font-weight: bold;
     margin-bottom: 8px;
 }
+
 
 .datosReceta input,
 .datosReceta textarea {
@@ -103,14 +116,17 @@ main {
     margin-bottom: 20px;
 }
 
+
 .datosReceta input {
     height: 35px;
 }
+
 
 .datosReceta textarea {
     height: 100px;
     resize: none;
 }
+
 
 .zonaFotos {
     width: 50%;
@@ -119,6 +135,7 @@ main {
     flex-direction: column;
     align-items: center;
 }
+
 
 .subirFotos {
     height: 4rem;
@@ -137,9 +154,11 @@ main {
     margin-right: 0;
 }
 
+
 #fotos {
     display: none;
 }
+
 
 #vistaFotos {
     display: flex;
@@ -149,6 +168,7 @@ main {
     margin-top: 12px;
 }
 
+
 #vistaFotos img {
     width: 90px;
     height: 75px;
@@ -157,10 +177,10 @@ main {
     border: 1px solid white;
 }
 
+
 .botonSubir {
     width: 200px;
     height: 65px;
-    margin: -10px auto 0;
     background-color: #014A00;
     border: 2px solid white;
     border-radius: 5px;
@@ -173,19 +193,28 @@ main {
     justify-content: center;
     align-items: center;
 }
+.padreBoton {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+}
+
 
 .volver:hover,
 .botonSubir:hover {
     background-color: #026500;
 }
 
+
 #mensaje {
-    width: 100%;
-    margin: 10px 0 0;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
 }
+
+
+
 
 
 
@@ -200,6 +229,7 @@ main {
     box-sizing: border-box;
 }
 
+
 .titulopreferencias {
     font-family: 'Noto Sans', sans-serif;
     font-size: 40px;
@@ -207,6 +237,7 @@ main {
     text-align: center;
     margin: 0 0 1.8rem 0;
 }
+
 
 .opciones {
     display: flex;
@@ -218,6 +249,7 @@ main {
     width: 100%;
 }
 
+
 .opcionceliaco {
     display: flex;
     flex-direction: column;
@@ -226,6 +258,7 @@ main {
     cursor: pointer;
     font-family: 'Noto Sans', sans-serif;
 }
+
 
 .opcionceliaco input {
     appearance: none;
@@ -244,9 +277,11 @@ main {
     cursor: pointer;
 }
 
+
 .opcionceliaco input:checked {
     background-color: black;
 }
+
 
 .opcionceliaco input:checked::after {
     content: "✓";
@@ -257,12 +292,14 @@ main {
     text-align: center;
 }
 
+
 .opcionceliaco label {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
+
 
 .opcionceliaco img {
     width: 17vh;
@@ -273,6 +310,7 @@ main {
     box-sizing: border-box;
 }
 
+
 .opcionvegetarianismo {
     display: flex;
     flex-direction: column;
@@ -281,6 +319,7 @@ main {
     cursor: pointer;
     font-family: 'Noto Sans', sans-serif;
 }
+
 
 .opcionvegetarianismo input {
     appearance: none;
@@ -299,9 +338,11 @@ main {
     cursor: pointer;
 }
 
+
 .opcionvegetarianismo input:checked {
     background-color: black;
 }
+
 
 .opcionvegetarianismo input:checked::after {
     content: "✓";
@@ -312,12 +353,14 @@ main {
     text-align: center;
 }
 
+
 .opcionvegetarianismo label {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
+
 
 .opcionvegetarianismo img {
     width: 17vh;
@@ -328,6 +371,7 @@ main {
     box-sizing: border-box;
 }
 
+
 .opcionveganismo {
     display: flex;
     flex-direction: column;
@@ -336,6 +380,7 @@ main {
     cursor: pointer;
     font-family: 'Noto Sans', sans-serif;
 }
+
 
 .opcionveganismo input {
     appearance: none;
@@ -354,9 +399,11 @@ main {
     cursor: pointer;
 }
 
+
 .opcionveganismo input:checked {
     background-color: black;
 }
+
 
 .opcionveganismo input:checked::after {
     content: "✓";
@@ -367,12 +414,14 @@ main {
     text-align: center;
 }
 
+
 .opcionveganismo label {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
+
 
 .opcionveganismo img {
     width: 17vh;
@@ -382,6 +431,7 @@ main {
     border-radius: 50%;
     box-sizing: border-box;
 }
+
 
 .palabradesimbolo {
     margin-top: 0.31rem;
