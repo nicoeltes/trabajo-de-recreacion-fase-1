@@ -52,8 +52,7 @@ body > * {
 }
 
 .separacion > img {
-    width: 150px;
-    height: 150px;
+    scale: 0.52;
     object-fit: contain;
 }
 
@@ -82,8 +81,8 @@ h2 {
 }
 
 .logo {
-    width: 7rem;
-    height: 7rem;
+    width: 0rem;
+    height: 0rem;
 }
 
 .btn-link {

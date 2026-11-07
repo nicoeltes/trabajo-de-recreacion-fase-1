@@ -36,11 +36,10 @@ body {
 }
 
 .logo {
-    width: 8rem;
-    height: 8rem;
+    scale: 0.52;
     display: flex;
     justify-content: flex-start;
-    margin-left: 2rem;
+
 }
 
 button {
