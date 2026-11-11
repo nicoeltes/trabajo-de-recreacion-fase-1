@@ -1,4 +1,3 @@
-
 const mapa = L.map("mapa").setView([-34.6037, -58.3816], 14);
 
 L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
@@ -75,9 +74,22 @@ async function buscarLocales() {
 
         const nombre = etiquetas.name || "Local gastronómico";
 
+        const direccion = [etiquetas["addr:street"], etiquetas["addr:housenumber"]].filter(Boolean).join(" ");
+
+        const datosDelLocal = new URLSearchParams({
+            nombre: nombre,
+            direccion: direccion,
+            tipo: etiquetas.amenity || "",
+            lat: latitud,
+            lon: longitud
+        });
+
         const marcador = L.marker([latitud, longitud])
             .bindPopup(`
-                <b>${nombre}</b>
+                <b>${nombre}</b><br>
+                <a href="infolocal.html?${datosDelLocal}">
+                    <button type="button" class="botonVerLocal">Ver información</button>
+                </a>
             `);
 
         marcadores.push({
