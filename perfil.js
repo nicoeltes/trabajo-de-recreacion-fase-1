@@ -1,91 +1,66 @@
+const API = "http://localhost:3000";
 
-const formulario = document.getElementById("loginForm");
+const nombreDeUsuario = document.querySelector(".nombredeusuario");
+const correo = document.querySelector(".correo");
+const restriccion = document.querySelector(".restriccion");
+const campoPassword = document.getElementById("password");
 
-const contraseñaActual = document.getElementById("contraseñaActual");
-const contraseñaNueva = document.getElementById("contraseñaNueva");
-const confirmarContraseña = document.getElementById("confirmarContraseña");
-const mensaje = document.getElementById("mensaje");
-
-formulario.addEventListener("submit", async function(event) {
-    event.preventDefault();
-
-    mensaje.textContent = "";
-
-    if (
-        contraseñaActual.value === "" ||
-        contraseñaNueva.value === "" ||
-        confirmarContraseña.value === ""
-    ) {
-        mensaje.textContent = "Completá todos los campos.";
-        mensaje.style.color = "red";
-        return;
+function obtenerUsuarioActual() {
+    try {
+        return JSON.parse(localStorage.getItem("usuarioActual"));
+    } catch (error) {
+        return null;
     }
+}
 
-    if (contraseñaNueva.value !== confirmarContraseña.value) {
-        mensaje.textContent = "Las contraseñas nuevas no coinciden.";
-        mensaje.style.color = "red";
-        return;
-    }
+async function cargarPerfil() {
+    const usuarioActual = obtenerUsuarioActual();
 
-    if (contraseñaActual.value === contraseñaNueva.value) {
-        mensaje.textContent =
-            "La nueva contraseña debe ser diferente de la actual.";
-        mensaje.style.color = "red";
+    if (!usuarioActual || !usuarioActual.id_usuario) {
+        nombreDeUsuario.textContent = "Tenés que iniciar sesión para ver tu perfil.";
         return;
     }
 
     try {
-        const respuesta = await fetch(
-            "http://localhost:3000/cambiar-contraseña",
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                credentials: "include",
-                body: JSON.stringify({
-                    contraseñaActual: contraseñaActual.value,
-                    contraseñaNueva: contraseñaNueva.value
-                })
-            }
-        );
-
-        const resultado = await respuesta.json();
+        const respuesta = await fetch(API + "/usuarios/" + usuarioActual.id_usuario);
 
         if (!respuesta.ok) {
-            mensaje.textContent =
-                resultado.mensaje ||
-                "No se pudo cambiar la contraseña.";
-            mensaje.style.color = "red";
-            return;
+            throw new Error("No se pudo cargar el perfil.");
         }
 
-        const usuarioGuardado = localStorage.getItem("usuarioActual");
+        const usuario = await respuesta.json();
 
-        if (usuarioGuardado) {
-            const usuario = JSON.parse(usuarioGuardado);
+        const restricciones = [];
 
-            delete usuario.password;
-
-            localStorage.setItem(
-                "usuarioActual",
-                JSON.stringify(usuario)
-            );
+        if (usuario.celiaco === true) {
+            restricciones.push("Celíaco");
         }
 
-        mensaje.textContent =
-            resultado.mensaje ||
-            "La contraseña se cambió correctamente.";
+        if (usuario.vegano === true) {
+            restricciones.push("Vegano");
+        }
 
-        mensaje.style.color = "green";
+        if (usuario.vegetariano === true) {
+            restricciones.push("Vegetariano");
+        }
 
-        formulario.reset();
+        nombreDeUsuario.textContent = "Nombre de usuario: " + usuario.usuario;
+        correo.textContent = "Correo electrónico: " + usuario.mail;
+        restriccion.textContent =
+            "Restriccion alimenticia: " +
+            (restricciones.length > 0 ? restricciones.join(", ") : "Ninguna");
+
+        // El back no devuelve la contraseña, así que se muestra oculta
+        if (campoPassword) {
+            campoPassword.value = "********";
+        }
 
     } catch (error) {
-        console.error("Error al cambiar la contraseña:", error);
+        console.error("Error al cargar el perfil:", error);
 
-        mensaje.textContent =
-            "No se pudo conectar con el servidor.";
-        mensaje.style.color = "red";
+        nombreDeUsuario.textContent =
+            "No se pudo cargar el perfil. Verificá que el servidor esté funcionando.";
     }
-});
+}
+
+cargarPerfil();

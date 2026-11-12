@@ -1,3 +1,4 @@
+const API = "http://localhost:3000";
 
 const zonaRecetas = document.getElementById("zone");
 
@@ -15,7 +16,7 @@ async function cargarRecetas() {
     zonaRecetas.innerHTML = "";
 
     try {
-        const respuesta = await fetch("http://localhost:3000/recetas");
+        const respuesta = await fetch(API + "/recetas");
 
         if (!respuesta.ok) {
             throw new Error("No se pudieron cargar las recetas.");
@@ -53,22 +54,22 @@ function mostrarRecetas(recetas) {
         const foto = document.createElement("section");
         foto.classList.add("foto");
 
-        if (receta.fotos && receta.fotos.length > 0) {
+        if (receta.foto) {
             const imagen = document.createElement("img");
 
-            imagen.src = receta.fotos[0];
-            imagen.alt = receta.nombre;
+            imagen.src = receta.foto;
+            imagen.alt = receta.titulo;
             imagen.style.width = "100%";
             imagen.style.height = "100%";
             imagen.style.objectFit = "cover";
 
             foto.appendChild(imagen);
         } else {
-            foto.textContent = receta.nombre;
+            foto.textContent = receta.titulo;
         }
 
         const nombre = document.createElement("h2");
-        nombre.textContent = receta.nombre;
+        nombre.textContent = receta.titulo;
 
         articulo.appendChild(foto);
         articulo.appendChild(nombre);
@@ -79,20 +80,12 @@ function mostrarRecetas(recetas) {
 
 function aplicarFiltros() {
     const calificacionesSeleccionadas = Array.from(opcionesCalificacion)
-        .filter(function (opcion) {
-            return opcion.checked;
-        })
-        .map(function (opcion) {
-            return Number(opcion.value);
-        });
+        .filter(opcion => opcion.checked)
+        .map(opcion => Number(opcion.value));
 
     const restriccionesSeleccionadas = Array.from(opcionesRestriccion)
-        .filter(function (opcion) {
-            return opcion.checked;
-        })
-        .map(function (opcion) {
-            return opcion.value;
-        });
+        .filter(opcion => opcion.checked)
+        .map(opcion => opcion.value);
 
     const calificacionMinima = calificacionesSeleccionadas.length > 0
         ? Math.min(...calificacionesSeleccionadas)
@@ -107,14 +100,7 @@ function aplicarFiltros() {
 
         const cumpleRestriccion =
             restriccionesSeleccionadas.length === 0 ||
-            restriccionesSeleccionadas.some(function (restriccion) {
-                return (
-                    receta[restriccion] === true ||
-                    receta[restriccion] === "true" ||
-                    (Array.isArray(receta.restricciones) &&
-                        receta.restricciones.includes(restriccion))
-                );
-            });
+            restriccionesSeleccionadas.some(restriccion => receta[restriccion] === true);
 
         return cumpleCalificacion && cumpleRestriccion;
     });
@@ -130,22 +116,12 @@ cerrarFiltros.addEventListener("click", function () {
     panelFiltros.classList.remove("mostrar");
 });
 
-opcionesCalificacion.forEach(function (opcion) {
-    opcion.addEventListener("change", aplicarFiltros);
-});
-
-opcionesRestriccion.forEach(function (opcion) {
-    opcion.addEventListener("change", aplicarFiltros);
-});
+opcionesCalificacion.forEach(opcion => opcion.addEventListener("change", aplicarFiltros));
+opcionesRestriccion.forEach(opcion => opcion.addEventListener("change", aplicarFiltros));
 
 limpiarFiltros.addEventListener("click", function () {
-    opcionesCalificacion.forEach(function (opcion) {
-        opcion.checked = false;
-    });
-
-    opcionesRestriccion.forEach(function (opcion) {
-        opcion.checked = false;
-    });
+    opcionesCalificacion.forEach(opcion => opcion.checked = false);
+    opcionesRestriccion.forEach(opcion => opcion.checked = false);
 
     mostrarRecetas(todasLasRecetas);
 });

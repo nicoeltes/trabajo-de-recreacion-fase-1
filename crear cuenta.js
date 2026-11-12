@@ -1,4 +1,3 @@
-
 const formulario = document.getElementById("loginForm");
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("Email");
@@ -9,24 +8,6 @@ const veganismo = document.getElementById("veganismo");
 const vegetarianismo = document.getElementById("vegetarianismo");
 const mensaje = document.getElementById("mensaje");
 
-function obtenerPreferencias() {
-    const preferencias = [];
-
-    if (celiaco.checked) {
-        preferencias.push("celiaco");
-    }
-
-    if (veganismo.checked) {
-        preferencias.push("veganismo");
-    }
-
-    if (vegetarianismo.checked) {
-        preferencias.push("vegetarianismo");
-    }
-
-    return preferencias;
-}
-
 formulario.addEventListener("submit", async function(evento) {
     evento.preventDefault();
 
@@ -34,31 +15,33 @@ formulario.addEventListener("submit", async function(evento) {
 
     const datosCuenta = {
         usuario: usuario.value.trim(),
-        email: email.value.trim(),
-        password: password.value,
-        preferencias: obtenerPreferencias()
+        mail: email.value.trim(),
+        contrasena: password.value,
+        confirmar_contrasena: confirmarPassword.value,
+        vegano: veganismo.checked,
+        vegetariano: vegetarianismo.checked,
+        celiaco: celiaco.checked
     };
 
     if (
         !datosCuenta.usuario ||
-        !datosCuenta.email ||
-        !datosCuenta.password ||
-        !confirmarPassword.value
+        !datosCuenta.mail ||
+        !datosCuenta.contrasena ||
+        !datosCuenta.confirmar_contrasena
     ) {
         mensaje.textContent = "Completá todos los campos.";
         mensaje.style.color = "red";
         return;
     }
 
-    if (datosCuenta.password !== confirmarPassword.value) {
+    if (datosCuenta.contrasena !== datosCuenta.confirmar_contrasena) {
         mensaje.textContent = "Las contraseñas no coinciden.";
         mensaje.style.color = "red";
         return;
     }
 
-    if (datosCuenta.preferencias.length === 0) {
-        mensaje.textContent =
-            "Debés seleccionar al menos una restricción alimenticia.";
+    if (!celiaco.checked && !veganismo.checked && !vegetarianismo.checked) {
+        mensaje.textContent = "Debés seleccionar al menos una restricción alimenticia.";
         mensaje.style.color = "red";
         return;
     }
@@ -74,28 +57,20 @@ formulario.addEventListener("submit", async function(evento) {
 
         const resultado = await respuesta.json();
 
-        if (!respuesta.ok) {
-            mensaje.textContent =
-                resultado.mensaje ||
-                resultado.message ||
-                "No se pudo crear la cuenta.";
-
+        if (resultado.id_usuario === undefined) {
+            mensaje.textContent = resultado.mensaje || "No se pudo crear la cuenta.";
             mensaje.style.color = "red";
             return;
         }
 
-        mensaje.textContent =
-            resultado.mensaje || "¡La cuenta se creó correctamente!";
-
+        mensaje.textContent = resultado.mensaje || "¡La cuenta se creó correctamente!";
         mensaje.style.color = "green";
         formulario.reset();
 
     } catch (error) {
         console.error("Error al crear la cuenta:", error);
 
-        mensaje.textContent =
-            "No se pudo conectar con el servidor. Verificá que esté iniciado.";
-
+        mensaje.textContent = "No se pudo conectar con el servidor.";
         mensaje.style.color = "red";
     }
 });

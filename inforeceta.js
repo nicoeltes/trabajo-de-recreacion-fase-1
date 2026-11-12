@@ -1,3 +1,4 @@
+const API = "http://localhost:3000";
 
 const nombreReceta = document.getElementById("nombreReceta");
 const ingredientesReceta = document.getElementById("ingredientesReceta");
@@ -5,7 +6,6 @@ const instruccionesReceta = document.getElementById("instruccionesReceta");
 const fotosReceta = document.getElementById("fotosReceta");
 
 const estrellas = document.querySelectorAll("#estrellasCalificar button");
-const botonEnviar = document.getElementById("enviarCalificacion");
 const mensajeCalificacion = document.getElementById("mensajeCalificacion");
 const promedioCalificacion = document.getElementById("promedioCalificacion");
 
@@ -19,21 +19,15 @@ try {
     console.error("No se pudo leer la receta:", error);
 }
 
-// CARGAR INFORMACION DE LA RECETA
-
-function convertirLista(datos) {
-    if (Array.isArray(datos)) {
-        return datos;
+function obtenerUsuarioActual() {
+    try {
+        return JSON.parse(localStorage.getItem("usuarioActual"));
+    } catch (error) {
+        return null;
     }
-
-    if (typeof datos === "string") {
-        return datos.split("\n").filter(function (elemento) {
-            return elemento.trim() !== "";
-        });
-    }
-
-    return [];
 }
+
+// MOSTRAR LA RECETA
 
 function cargarReceta() {
     if (!receta) {
@@ -41,11 +35,11 @@ function cargarReceta() {
         return;
     }
 
-    nombreReceta.textContent = receta.nombre || "Receta sin nombre";
+    nombreReceta.textContent = receta.titulo;
 
     ingredientesReceta.innerHTML = "";
 
-    convertirLista(receta.ingredientes).forEach(function (ingrediente) {
+    receta.ingredientes.forEach(function (ingrediente) {
         const elemento = document.createElement("li");
         elemento.textContent = ingrediente;
         ingredientesReceta.appendChild(elemento);
@@ -53,27 +47,25 @@ function cargarReceta() {
 
     instruccionesReceta.innerHTML = "";
 
-    convertirLista(receta.instrucciones).forEach(function (instruccion) {
+    receta.pasos.forEach(function (paso) {
         const elemento = document.createElement("li");
-        elemento.textContent = instruccion;
+        elemento.textContent = paso;
         instruccionesReceta.appendChild(elemento);
     });
 
     fotosReceta.innerHTML = "";
 
-    if (receta.fotos && receta.fotos.length > 0) {
-        receta.fotos.forEach(function (foto) {
-            const imagen = document.createElement("img");
-            imagen.src = typeof foto === "string" ? foto : foto.url;
-            imagen.alt = receta.nombre || "Foto de la receta";
-            fotosReceta.appendChild(imagen);
-        });
+    if (receta.foto) {
+        const imagen = document.createElement("img");
+        imagen.src = receta.foto;
+        imagen.alt = receta.titulo;
+        fotosReceta.appendChild(imagen);
     } else {
         fotosReceta.textContent = "Esta receta no tiene fotos.";
     }
 }
 
-// SELECCIONAR ESTRELLAS
+// ELEGIR ESTRELLAS
 
 estrellas.forEach(function (estrella) {
     estrella.addEventListener("click", function () {
@@ -82,124 +74,100 @@ estrellas.forEach(function (estrella) {
         estrellas.forEach(function (otraEstrella) {
             const valor = Number(otraEstrella.dataset.valor);
 
-            if (valor <= puntuacionSeleccionada) {
-                otraEstrella.textContent = "★";
-            } else {
-                otraEstrella.textContent = "☆";
-            }
-
+            otraEstrella.textContent = valor <= puntuacionSeleccionada ? "★" : "☆";
             otraEstrella.style.color = "#FFD700";
         });
 
         calificacionEnviada = false;
 
+        const usuarioActual = obtenerUsuarioActual();
+
         mensajeCalificacion.textContent =
-            "La calificación se enviará cuando salgas de esta pantalla.";
+            usuarioActual && usuarioActual.id_usuario
+                ? "La calificación se enviará cuando salgas de esta pantalla."
+                : "Tenés que iniciar sesión para calificar.";
     });
 });
 
-// CARGAR CALIFICACION DESDE EL BACKEND
+// TRAER LAS CALIFICACIONES DEL BACK Y CALCULAR EL PROMEDIO
 
 async function cargarCalificacion() {
-    if (!receta || !receta.id) {
-        promedioCalificacion.textContent =
-            "No se encontró el identificador de la receta.";
+    if (!receta) {
         return;
     }
 
     try {
-        const respuesta = await fetch(
-            `http://localhost:3000/recetas/${encodeURIComponent(receta.id)}/calificacion`,
-            {
-                method: "GET",
-                credentials: "include"
-            }
-        );
+        const respuesta = await fetch(API + "/recetas/" + receta.id_receta + "/calificaciones");
 
         if (!respuesta.ok) {
             throw new Error("No se pudo cargar la calificación.");
         }
 
-        const resultado = await respuesta.json();
+        const calificaciones = await respuesta.json();
 
-        if (resultado.cantidad === 0 || resultado.promedio == null) {
-            promedioCalificacion.textContent =
-                "Todavía no hay calificaciones.";
+        if (calificaciones.length === 0) {
+            promedioCalificacion.textContent = "Todavía no hay calificaciones.";
             return;
         }
 
-        const promedio = Number(resultado.promedio);
+        let suma = 0;
+
+        calificaciones.forEach(function (calificacion) {
+            suma = suma + calificacion.estrellas;
+        });
+
+        const promedio = suma / calificaciones.length;
         const cantidadEstrellas = Math.round(promedio);
 
         promedioCalificacion.textContent =
-            `${"★".repeat(cantidadEstrellas)}${"☆".repeat(5 - cantidadEstrellas)} (${promedio.toFixed(1)}/5 - ${resultado.cantidad} calificaciones)`;
+            "★".repeat(cantidadEstrellas) + "☆".repeat(5 - cantidadEstrellas) +
+            " (" + promedio.toFixed(1) + "/5)";
 
     } catch (error) {
         console.error("Error al cargar la calificación:", error);
 
-        promedioCalificacion.textContent =
-            "No se pudo cargar la calificación.";
+        promedioCalificacion.textContent = "No se pudo cargar la calificación.";
     }
 }
 
-// ENVIAR CALIFICACION AL SALIR DE LA PANTALLA
+// MANDAR LA CALIFICACION AL BACK CUANDO SE SALE DE LA PAGINA
 
 async function enviarCalificacion() {
-    if (puntuacionSeleccionada === 0 || calificacionEnviada) {
-        return;
-    }
+    const usuarioActual = obtenerUsuarioActual();
 
-    if (!receta || !receta.id) {
+    if (
+        puntuacionSeleccionada === 0 ||
+        calificacionEnviada ||
+        !receta ||
+        !usuarioActual ||
+        !usuarioActual.id_usuario
+    ) {
         return;
     }
 
     calificacionEnviada = true;
 
     try {
-        const respuesta = await fetch(
-            `http://localhost:3000/recetas/${encodeURIComponent(receta.id)}/calificacion`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                credentials: "include",
-                keepalive: true,
-                body: JSON.stringify({
-                    puntuacion: puntuacionSeleccionada
-                })
-            }
-        );
-
-        if (!respuesta.ok) {
-            calificacionEnviada = false;
-            console.error("No se pudo guardar la calificación.");
-        }
-
+        await fetch(API + "/recetas/" + receta.id_receta + "/calificaciones", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            keepalive: true,
+            body: JSON.stringify({
+                id_usuario: usuarioActual.id_usuario,
+                estrellas: puntuacionSeleccionada,
+                descripcion: "",
+                foto: null
+            })
+        });
     } catch (error) {
         calificacionEnviada = false;
         console.error("Error al enviar la calificación:", error);
     }
 }
 
-// BOTON DE CALIFICAR
-
-botonEnviar.addEventListener("click", function () {
-    if (puntuacionSeleccionada === 0) {
-        mensajeCalificacion.textContent =
-            "Primero elegí una puntuación.";
-        return;
-    }
-
-    mensajeCalificacion.textContent =
-        "Tu calificación se enviará cuando salgas de esta pantalla.";
-});
-
-// DETECTAR CUANDO SE SALE DE LA PAGINA
-
 window.addEventListener("pagehide", enviarCalificacion);
 
-// EJECUTAR AL ABRIR LA PAGINA
-
 cargarReceta();
-cargarCalificacion();
+cargarCalificacion();   

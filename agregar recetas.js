@@ -1,3 +1,4 @@
+const API = "http://localhost:3000";
 
 const formulario = document.getElementById("formularioReceta");
 const fotos = document.getElementById("fotos");
@@ -17,14 +18,9 @@ function agregarListado(textarea) {
             const final = textarea.selectionEnd;
             const texto = textarea.value;
 
-            const antes = texto.substring(0, inicio);
-            const despues = texto.substring(final);
-
-            const nuevoTexto = antes + "\n- " + despues;
-
-            textarea.value = nuevoTexto;
-            textarea.selectionStart = inicio + 4;
-            textarea.selectionEnd = inicio + 4;
+            textarea.value = texto.substring(0, inicio) + "\n- " + texto.substring(final);
+            textarea.selectionStart = inicio + 3;
+            textarea.selectionEnd = inicio + 3;
         }
     });
 }
@@ -54,75 +50,78 @@ fotos.addEventListener("change", function() {
     });
 });
 
+function obtenerUsuarioActual() {
+    try {
+        return JSON.parse(localStorage.getItem("usuarioActual"));
+    } catch (error) {
+        return null;
+    }
+}
+
+// Convierte la foto en texto para poder mandarla al back
+function leerFoto(archivo) {
+    return new Promise(function(resolver, rechazar) {
+        const lector = new FileReader();
+        lector.onload = () => resolver(lector.result);
+        lector.onerror = rechazar;
+        lector.readAsDataURL(archivo);
+    });
+}
+
+// Convierte el texto del textarea en una lista
+function limpiarLista(texto) {
+    return texto
+        .split("\n")
+        .map(item => item.replace(/^- /, "").trim())
+        .filter(item => item !== "");
+}
+
 formulario.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const datosReceta = new FormData();
+    mensaje.textContent = "";
 
-    datosReceta.append(
-        "nombre",
-        document.getElementById("nombre").value.trim()
-    );
+    const usuarioActual = obtenerUsuarioActual();
 
-    datosReceta.append(
-        "ingredientes",
-        JSON.stringify(
-            ingredientes.value
-                .split("\n")
-                .map(item => item.replace(/^- /, "").trim())
-                .filter(item => item !== "")
-        )
-    );
-
-    datosReceta.append(
-        "instrucciones",
-        JSON.stringify(
-            instrucciones.value
-                .split("\n")
-                .map(item => item.replace(/^- /, "").trim())
-                .filter(item => item !== "")
-        )
-    );
-
-    const restricciones = [];
-
-    if (document.getElementById("celiaco").checked) {
-        restricciones.push("celiaco");
+    if (!usuarioActual || !usuarioActual.id_usuario) {
+        mensaje.textContent = "Tenés que iniciar sesión para agregar una receta.";
+        mensaje.style.color = "red";
+        return;
     }
-
-    if (document.getElementById("veganismo").checked) {
-        restricciones.push("veganismo");
-    }
-
-    if (document.getElementById("vegetarianismo").checked) {
-        restricciones.push("vegetarianismo");
-    }
-
-    datosReceta.append(
-        "restricciones",
-        JSON.stringify(restricciones)
-    );
-
-    Array.from(fotos.files).forEach(function(foto) {
-        datosReceta.append("fotos", foto);
-    });
 
     try {
-        const respuesta = await fetch("http://localhost:3000/recetas", {
+        let foto = null;
+
+        if (fotos.files.length > 0) {
+            foto = await leerFoto(fotos.files[0]);
+        }
+
+        const datosReceta = {
+            id_usuario: usuarioActual.id_usuario,
+            titulo: document.getElementById("nombre").value.trim(),
+            foto: foto,
+            ingredientes: limpiarLista(ingredientes.value),
+            pasos: limpiarLista(instrucciones.value),
+            vegano: document.getElementById("veganismo").checked,
+            vegetariano: document.getElementById("vegetarianismo").checked,
+            celiaco: document.getElementById("celiaco").checked
+        };
+
+        const respuesta = await fetch(API + "/recetas", {
             method: "POST",
-            body: datosReceta
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datosReceta)
         });
 
         const resultado = await respuesta.json();
 
         if (!respuesta.ok) {
-            throw new Error(
-                resultado.mensaje || "No se pudo enviar la receta."
-            );
+            throw new Error(resultado.mensaje || "No se pudo enviar la receta.");
         }
 
-        mensaje.textContent =
-            resultado.mensaje || "¡La receta se envió correctamente!";
+        mensaje.textContent = resultado.mensaje || "¡La receta se envió correctamente!";
         mensaje.style.color = "green";
 
         formulario.reset();
@@ -132,11 +131,7 @@ formulario.addEventListener("submit", async function(event) {
     } catch (error) {
         console.log(error);
 
-        mensaje.textContent =
-            error.message === "Failed to fetch"
-                ? "No se pudo conectar con el servidor."
-                : error.message;
-
+        mensaje.textContent = "No se pudo conectar con el servidor.";
         mensaje.style.color = "red";
     }
 });

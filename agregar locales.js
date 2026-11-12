@@ -1,3 +1,4 @@
+const API = "http://localhost:3000";
 
 const nombre = document.getElementById("nombre");
 const direccion = document.getElementById("direccion");
@@ -30,49 +31,42 @@ L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_D
 // SELECCIONAR UBICACION
 
 mapaLocal.on("click", function (evento) {
-
-    const latitud = evento.latlng.lat;
-    const longitud = evento.latlng.lng;
-
     coordenadas = {
-        lat: latitud,
-        lng: longitud
+        lat: evento.latlng.lat,
+        lng: evento.latlng.lng
     };
 
     if (marcador) {
         mapaLocal.removeLayer(marcador);
     }
 
-    marcador = L.marker([latitud, longitud]).addTo(mapaLocal);
-
+    marcador = L.marker([coordenadas.lat, coordenadas.lng]).addTo(mapaLocal);
     marcador.bindPopup("Ubicación de tu local").openPopup();
 
     ubicacionSeleccionada = true;
-
     estadoMapa.textContent = "Ubicación seleccionada";
-
 });
 
 // MOSTRAR NOMBRES DE LAS FOTOS
 
 fotos.addEventListener("change", function () {
-
-    nombreFotos.textContent = "";
-
-    if (fotos.files.length > 0) {
-
-        const nombres = Array.from(fotos.files).map(foto => foto.name);
-
-        nombreFotos.textContent = nombres.join(", ");
-
-    }
-
+    nombreFotos.textContent = Array.from(fotos.files).map(foto => foto.name).join(", ");
 });
+
+// CONVIERTE UNA FOTO EN TEXTO PARA MANDARLA AL BACK
+
+function leerFoto(archivo) {
+    return new Promise(function (resolver, rechazar) {
+        const lector = new FileReader();
+        lector.onload = () => resolver(lector.result);
+        lector.onerror = rechazar;
+        lector.readAsDataURL(archivo);
+    });
+}
 
 // AGREGAR LOCAL
 
 botonAgregar.addEventListener("click", async function () {
-
     if (nombre.value.trim() === "") {
         alert("Ingresá el nombre del local");
         return;
@@ -88,38 +82,30 @@ botonAgregar.addEventListener("click", async function () {
         return;
     }
 
-    const preferencias = [];
-
-    if (document.getElementById("celiaco").checked) {
-        preferencias.push("celiaco");
-    }
-
-    if (document.getElementById("veganismo").checked) {
-        preferencias.push("veganismo");
-    }
-
-    if (document.getElementById("vegetarianismo").checked) {
-        preferencias.push("vegetarianismo");
-    }
-
-    const datosLocal = new FormData();
-
-    datosLocal.append("nombre", nombre.value);
-    datosLocal.append("direccion", direccion.value);
-    datosLocal.append("menu", menu.value);
-    datosLocal.append("preferencias", JSON.stringify(preferencias));
-
-    datosLocal.append("coordenadas", JSON.stringify(coordenadas));
-
-    for (let i = 0; i < fotos.files.length; i++) {
-        datosLocal.append("fotos", fotos.files[i]);
-    }
-
     try {
+        const listaFotos = [];
 
-        const respuesta = await fetch("http://localhost:3000/locales", {
+        for (let i = 0; i < fotos.files.length; i++) {
+            listaFotos.push(await leerFoto(fotos.files[i]));
+        }
+
+        const respuesta = await fetch(API + "/locales", {
             method: "POST",
-            body: datosLocal
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre: nombre.value.trim(),
+                direccion: direccion.value.trim(),
+                codigo_postal: "",
+                link_menu: menu.value.trim(),
+                fotos: listaFotos,
+                latitud: coordenadas.lat,
+                longitud: coordenadas.lng,
+                celiaco: document.getElementById("celiaco").checked,
+                vegano: document.getElementById("veganismo").checked,
+                vegetariano: document.getElementById("vegetarianismo").checked
+            })
         });
 
         if (!respuesta.ok) {
@@ -131,11 +117,8 @@ botonAgregar.addEventListener("click", async function () {
         window.location.href = "mapa.html";
 
     } catch (error) {
-
         console.error(error);
 
         alert("No se pudo conectar con el servidor");
-
     }
-
 });

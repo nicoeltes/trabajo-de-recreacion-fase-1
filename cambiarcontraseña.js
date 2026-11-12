@@ -1,16 +1,32 @@
-
+const API = "http://localhost:3000";
 
 const formulario = document.getElementById("loginForm");
 
-const contraseñaActual = document.getElementById("contraseñaActual");
-const contraseñaNueva = document.getElementById("contraseñaNueva");
-const confirmarContraseña = document.getElementById("confirmarContraseña");
+const contraseñaActual = document.getElementById("password");
+const contraseñaNueva = document.getElementById("passwordnueva");
+const confirmarContraseña = document.getElementById("Confirmarpassword");
 const mensaje = document.getElementById("mensaje");
+
+function obtenerUsuarioActual() {
+    try {
+        return JSON.parse(localStorage.getItem("usuarioActual"));
+    } catch (error) {
+        return null;
+    }
+}
 
 formulario.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     mensaje.textContent = "";
+
+    const usuarioActual = obtenerUsuarioActual();
+
+    if (!usuarioActual || !usuarioActual.id_usuario) {
+        mensaje.textContent = "Tenés que iniciar sesión para cambiar la contraseña.";
+        mensaje.style.color = "red";
+        return;
+    }
 
     if (
         contraseñaActual.value === "" ||
@@ -28,25 +44,18 @@ formulario.addEventListener("submit", async function(event) {
         return;
     }
 
-    if (contraseñaActual.value === contraseñaNueva.value) {
-        mensaje.textContent =
-            "La nueva contraseña debe ser diferente de la actual.";
-        mensaje.style.color = "red";
-        return;
-    }
-
     try {
         const respuesta = await fetch(
-            "http://localhost:3000/cambiar-contraseña",
+            API + "/usuarios/" + usuarioActual.id_usuario + "/contrasena",
             {
-                method: "PUT",
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                credentials: "include",
                 body: JSON.stringify({
-                    contraseñaActual: contraseñaActual.value,
-                    contraseñaNueva: contraseñaNueva.value
+                    contrasena_actual: contraseñaActual.value,
+                    contrasena_nueva: contraseñaNueva.value,
+                    confirmar_contrasena: confirmarContraseña.value
                 })
             }
         );
@@ -54,16 +63,12 @@ formulario.addEventListener("submit", async function(event) {
         const resultado = await respuesta.json();
 
         if (!respuesta.ok) {
-            mensaje.textContent =
-                resultado.mensaje ||
-                "No se pudo cambiar la contraseña.";
+            mensaje.textContent = resultado.mensaje || "No se pudo cambiar la contraseña.";
             mensaje.style.color = "red";
             return;
         }
 
-        mensaje.textContent =
-            resultado.mensaje ||
-            "La contraseña se cambió correctamente.";
+        mensaje.textContent = resultado.mensaje || "La contraseña se cambió correctamente.";
         mensaje.style.color = "green";
 
         formulario.reset();
@@ -71,8 +76,7 @@ formulario.addEventListener("submit", async function(event) {
     } catch (error) {
         console.log(error);
 
-        mensaje.textContent =
-            "No se pudo conectar con el servidor.";
+        mensaje.textContent = "No se pudo conectar con el servidor.";
         mensaje.style.color = "red";
     }
 });

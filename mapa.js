@@ -7,6 +7,8 @@ L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_D
 
 const marcadores = [];
 
+// LOCALES DE OPENSTREETMAP
+
 async function buscarLocales() {
 
     const consulta = `
@@ -26,11 +28,7 @@ async function buscarLocales() {
     let datos = null;
 
     for (const servidor of servidores) {
-
         try {
-
-            console.log("Probando servidor:", servidor);
-
             const respuesta = await fetch(servidor, {
                 method: "POST",
                 body: new URLSearchParams({
@@ -43,17 +41,11 @@ async function buscarLocales() {
             }
 
             datos = await respuesta.json();
-
-            console.log("Locales encontrados:", datos.elements.length);
-
             break;
 
         } catch (error) {
-
             console.error("Falló el servidor:", error);
-
         }
-
     }
 
     if (!datos) {
@@ -62,7 +54,6 @@ async function buscarLocales() {
     }
 
     datos.elements.forEach(function(local) {
-
         const latitud = local.lat ?? local.center?.lat;
         const longitud = local.lon ?? local.center?.lon;
 
@@ -71,9 +62,7 @@ async function buscarLocales() {
         }
 
         const etiquetas = local.tags || {};
-
         const nombre = etiquetas.name || "Local gastronómico";
-
         const direccion = [etiquetas["addr:street"], etiquetas["addr:housenumber"]].filter(Boolean).join(" ");
 
         const datosDelLocal = new URLSearchParams({
@@ -96,36 +85,65 @@ async function buscarLocales() {
             marcador: marcador,
             nombre: nombre
         });
-
     });
 
-    console.log("Marcadores creados:", marcadores.length);
-
     aplicarBusqueda();
-
 }
 
+// LOCALES GUARDADOS EN EL BACK DE MARCOS
+
+async function cargarLocalesDelBack() {
+    try {
+        const respuesta = await fetch("http://localhost:3000/locales");
+
+        if (!respuesta.ok) {
+            throw new Error("Error HTTP: " + respuesta.status);
+        }
+
+        const locales = await respuesta.json();
+
+        locales.forEach(function(local) {
+            // Si el local no tiene ubicación, no se muestra en el mapa
+            if (local.latitud === null || local.longitud === null) {
+                return;
+            }
+
+            const marcador = L.marker([local.latitud, local.longitud])
+                .bindPopup(`
+                    <b>${local.nombre}</b><br>
+                    <a href="infolocal.html?id_local=${local.id_local}">
+                        <button type="button" class="botonVerLocal">Ver información</button>
+                    </a>
+                `);
+
+            marcadores.push({
+                marcador: marcador,
+                nombre: local.nombre
+            });
+        });
+
+        aplicarBusqueda();
+
+    } catch (error) {
+        console.error("No se pudieron cargar los locales del back:", error);
+    }
+}
+
+// BUSCADOR
 
 function aplicarBusqueda() {
-
     const busqueda = document.getElementById("busquedaLocal").value.toLowerCase();
 
     marcadores.forEach(function(local) {
-
-        const cumpleBusqueda = local.nombre.toLowerCase().includes(busqueda);
-
-        if (cumpleBusqueda) {
+        if (local.nombre.toLowerCase().includes(busqueda)) {
             local.marcador.addTo(mapa);
         } else {
             mapa.removeLayer(local.marcador);
         }
-
     });
-
 }
-
 
 document.getElementById("busquedaLocal").addEventListener("input", aplicarBusqueda);
 
-
+cargarLocalesDelBack();
 buscarLocales();
