@@ -76,7 +76,7 @@ async function buscarLocales() {
         const marcador = L.marker([latitud, longitud])
             .bindPopup(`
                 <b>${nombre}</b><br>
-                <a href="infolocal.html?${datosDelLocal}">
+                <a href="locales.html?${datosDelLocal}">
                     <button type="button" class="botonVerLocal">Ver información</button>
                 </a>
             `);
@@ -111,7 +111,7 @@ async function cargarLocalesDelBack() {
             const marcador = L.marker([local.latitud, local.longitud])
                 .bindPopup(`
                     <b>${local.nombre}</b><br>
-                    <a href="infolocal.html?id_local=${local.id_local}">
+                    <a href="locales.html?id_local=${local.id_local}">
                         <button type="button" class="botonVerLocal">Ver información</button>
                     </a>
                 `);
