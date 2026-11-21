@@ -15,16 +15,21 @@ function obtenerUsuarioActual() {
     }
 }
 
+// Muestra el cartel de abajo: tipo puede ser "exito" o "error"
+function mostrarMensaje(texto, tipo) {
+    mensaje.textContent = texto;
+    mensaje.className = tipo;
+}
+
 formulario.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    mensaje.textContent = "";
+    mostrarMensaje("", "");
 
     const usuarioActual = obtenerUsuarioActual();
 
     if (!usuarioActual || !usuarioActual.id_usuario) {
-        mensaje.textContent = "Tenés que iniciar sesión para cambiar la contraseña.";
-        mensaje.style.color = "red";
+        mostrarMensaje("Tenés que iniciar sesión para cambiar la contraseña.", "error");
         return;
     }
 
@@ -33,14 +38,17 @@ formulario.addEventListener("submit", async function(event) {
         contraseñaNueva.value === "" ||
         confirmarContraseña.value === ""
     ) {
-        mensaje.textContent = "Completá todos los campos.";
-        mensaje.style.color = "red";
+        mostrarMensaje("Completá todos los campos.", "error");
         return;
     }
 
     if (contraseñaNueva.value !== confirmarContraseña.value) {
-        mensaje.textContent = "Las contraseñas nuevas no coinciden.";
-        mensaje.style.color = "red";
+        mostrarMensaje("Las contraseñas nuevas no coinciden.", "error");
+        return;
+    }
+
+    if (contraseñaActual.value === contraseñaNueva.value) {
+        mostrarMensaje("La contraseña nueva tiene que ser distinta de la actual.", "error");
         return;
     }
 
@@ -60,23 +68,23 @@ formulario.addEventListener("submit", async function(event) {
             }
         );
 
-        const resultado = await respuesta.json();
-
         if (!respuesta.ok) {
-            mensaje.textContent = resultado.mensaje || "No se pudo cambiar la contraseña.";
-            mensaje.style.color = "red";
+            // El back responde 400 cuando la contraseña actual está mal
+            mostrarMensaje("La contraseña actual es incorrecta.", "error");
             return;
         }
 
-        mensaje.textContent = resultado.mensaje || "La contraseña se cambió correctamente.";
-        mensaje.style.color = "green";
+        mostrarMensaje("¡Tu contraseña se cambió correctamente!", "exito");
+
+        // Actualiza la contraseña guardada para que el perfil muestre la nueva
+        usuarioActual.contrasena = contraseñaNueva.value;
+        localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
 
         formulario.reset();
 
     } catch (error) {
         console.log(error);
 
-        mensaje.textContent = "No se pudo conectar con el servidor.";
-        mensaje.style.color = "red";
+        mostrarMensaje("No se pudo conectar con el servidor.", "error");
     }
 });

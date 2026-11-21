@@ -95,7 +95,7 @@ function mostrarFotos(fotos) {
 
     if (fotos.length > 1) {
         imagen.style.cursor = "pointer";
-        imagen.title = "Click para ver la siguiente foto";
+        imagen.title = "Hacé clic para ver la siguiente foto";
 
         imagen.addEventListener("click", function () {
             fotoActual = (fotoActual + 1) % fotos.length;

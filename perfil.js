@@ -47,13 +47,11 @@ async function cargarPerfil() {
         nombreDeUsuario.textContent = "Nombre de usuario: " + usuario.usuario;
         correo.textContent = "Correo electrónico: " + usuario.mail;
         restriccion.textContent =
-            "Restriccion alimenticia: " +
+            "Restricción alimenticia: " +
             (restricciones.length > 0 ? restricciones.join(", ") : "Ninguna");
 
-        // El back no devuelve la contraseña, así que se muestra oculta
-        if (campoPassword) {
-            campoPassword.value = "********";
-        }
+        // El back no devuelve la contraseña: se usa la que se guardó al iniciar sesión
+        campoPassword.value = usuarioActual.contrasena || "";
 
     } catch (error) {
         console.error("Error al cargar el perfil:", error);
@@ -62,5 +60,17 @@ async function cargarPerfil() {
             "No se pudo cargar el perfil. Verificá que el servidor esté funcionando.";
     }
 }
+
+// BOTON DEL OJITO: MOSTRAR U OCULTAR LA CONTRASEÑA
+
+const botonMostrarPassword = document.getElementById("mostrarPassword");
+
+botonMostrarPassword.addEventListener("click", function () {
+    if (campoPassword.type === "password") {
+        campoPassword.type = "text";
+    } else {
+        campoPassword.type = "password";
+    }
+});
 
 cargarPerfil();

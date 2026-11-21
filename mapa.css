@@ -44,6 +44,12 @@ body {
     gap: 3rem;
 }
 
+.campoBusqueda {
+    position: relative;
+    display: flex;
+    flex: 1;
+}
+
 .buscador input {
     display: flex;
     flex: 1;
@@ -63,6 +69,23 @@ body {
     font-size: 1rem;
     cursor: pointer;
 }
+.resultadosBusqueda {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0.5rem 0 0 0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    background-color: #014A00;
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+}
+
+.resultadosBusqueda:empty {
+    display: none;
+}
+
 .leaflet-top {
     top: 8rem;
 }

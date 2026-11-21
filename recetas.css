@@ -361,6 +361,11 @@ body:has(.panelFiltros.mostrar)::after {
     cursor: pointer;
 }
 
+.opcionesCalificacion label {
+    color: white;
+    font-size: 1.1rem;
+}
+
 .opcionesCalificacion span {
     color: yellow;
     font-size: 1.2rem;

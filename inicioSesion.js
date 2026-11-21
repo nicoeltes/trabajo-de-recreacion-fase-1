@@ -27,7 +27,7 @@ formLogin.addEventListener("submit", async function(e) {
 
         // El back manda id_usuario solo cuando el login es correcto
         if (resultado.id_usuario === undefined) {
-            mensaje.textContent = resultado.mensaje || "Usuario o contraseña incorrectos.";
+            mensaje.textContent = "Usuario o contraseña incorrectos.";
             mensaje.style.color = "red";
             return;
         }
@@ -37,11 +37,12 @@ formLogin.addEventListener("submit", async function(e) {
             "usuarioActual",
             JSON.stringify({
                 id_usuario: resultado.id_usuario,
-                usuario: usuario
+                usuario: usuario,
+                contrasena: password
             })
         );
 
-        mensaje.textContent = resultado.mensaje;
+        mensaje.textContent = "Inicio de sesión correcto.";
         mensaje.style.color = "white";
 
         window.location.href = "pagina principal.html";

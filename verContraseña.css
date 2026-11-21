@@ -1,0 +1,35 @@
+/* BOTON PARA VER U OCULTAR LA CONTRASEÑA */
+
+.campoContraseña {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+
+.botonVerContraseña {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.botonVerContraseña.visible {
+    opacity: 1;
+}
+
+.botonVerContraseña img {
+    width: 1.6rem;
+    height: 1.6rem;
+    object-fit: contain;
+    /* La imagen es blanca: se pasa a negro para que se vea sobre el campo blanco */
+    filter: brightness(0);
+}

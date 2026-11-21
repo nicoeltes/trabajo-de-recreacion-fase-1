@@ -53,13 +53,37 @@ fotos.addEventListener("change", function () {
     nombreFotos.textContent = Array.from(fotos.files).map(foto => foto.name).join(", ");
 });
 
-// CONVIERTE UNA FOTO EN TEXTO PARA MANDARLA AL BACK
+// FOTOS
 
+// Achica la foto (máximo 1200 píxeles) y la convierte en texto para mandarla al back.
+// Así una foto pesada del celular no traba la página ni el servidor.
 function leerFoto(archivo) {
-    return new Promise(function (resolver, rechazar) {
+    return new Promise(function(resolver, rechazar) {
         const lector = new FileReader();
-        lector.onload = () => resolver(lector.result);
+
         lector.onerror = rechazar;
+
+        lector.onload = function() {
+            const imagen = new Image();
+
+            imagen.onerror = rechazar;
+
+            imagen.onload = function() {
+                const maximo = 1200;
+                const escala = Math.min(1, maximo / Math.max(imagen.width, imagen.height));
+
+                const lienzo = document.createElement("canvas");
+                lienzo.width = Math.round(imagen.width * escala);
+                lienzo.height = Math.round(imagen.height * escala);
+
+                lienzo.getContext("2d").drawImage(imagen, 0, 0, lienzo.width, lienzo.height);
+
+                resolver(lienzo.toDataURL("image/jpeg", 0.8));
+            };
+
+            imagen.src = lector.result;
+        };
+
         lector.readAsDataURL(archivo);
     });
 }
@@ -79,6 +103,11 @@ botonAgregar.addEventListener("click", async function () {
 
     if (!ubicacionSeleccionada) {
         alert("Marcá la ubicación del local en el mapa");
+        return;
+    }
+
+    if (fotos.files.length === 0) {
+        alert("Tenés que subir al menos una foto del local");
         return;
     }
 

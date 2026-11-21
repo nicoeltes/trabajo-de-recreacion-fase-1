@@ -34,8 +34,8 @@ fotos.addEventListener("change", function() {
     const archivos = Array.from(fotos.files);
 
     textoFotos.textContent = archivos.length > 0
-        ? archivos.length + " foto/s seleccionada/s"
-        : "Subir foto/s";
+        ? "Foto seleccionada: " + archivos[0].name
+        : "Subir foto";
 
     archivos.forEach(function(archivo) {
         if (!archivo.type.startsWith("image/")) {
@@ -58,12 +58,35 @@ function obtenerUsuarioActual() {
     }
 }
 
-// Convierte la foto en texto para poder mandarla al back
+// Achica la foto (máximo 1200 píxeles) y la convierte en texto para mandarla al back.
+// Así una foto pesada del celular no traba la página ni el servidor.
 function leerFoto(archivo) {
     return new Promise(function(resolver, rechazar) {
         const lector = new FileReader();
-        lector.onload = () => resolver(lector.result);
+
         lector.onerror = rechazar;
+
+        lector.onload = function() {
+            const imagen = new Image();
+
+            imagen.onerror = rechazar;
+
+            imagen.onload = function() {
+                const maximo = 1200;
+                const escala = Math.min(1, maximo / Math.max(imagen.width, imagen.height));
+
+                const lienzo = document.createElement("canvas");
+                lienzo.width = Math.round(imagen.width * escala);
+                lienzo.height = Math.round(imagen.height * escala);
+
+                lienzo.getContext("2d").drawImage(imagen, 0, 0, lienzo.width, lienzo.height);
+
+                resolver(lienzo.toDataURL("image/jpeg", 0.8));
+            };
+
+            imagen.src = lector.result;
+        };
+
         lector.readAsDataURL(archivo);
     });
 }
@@ -89,12 +112,14 @@ formulario.addEventListener("submit", async function(event) {
         return;
     }
 
-    try {
-        let foto = null;
+    if (fotos.files.length === 0) {
+        mensaje.textContent = "Tenés que subir una foto de la receta.";
+        mensaje.style.color = "red";
+        return;
+    }
 
-        if (fotos.files.length > 0) {
-            foto = await leerFoto(fotos.files[0]);
-        }
+    try {
+        const foto = await leerFoto(fotos.files[0]);
 
         const datosReceta = {
             id_usuario: usuarioActual.id_usuario,
@@ -121,12 +146,12 @@ formulario.addEventListener("submit", async function(event) {
             throw new Error(resultado.mensaje || "No se pudo enviar la receta.");
         }
 
-        mensaje.textContent = resultado.mensaje || "¡La receta se envió correctamente!";
+        mensaje.textContent = "¡La receta se creó correctamente!";
         mensaje.style.color = "green";
 
         formulario.reset();
         vistaFotos.innerHTML = "";
-        textoFotos.textContent = "Subir foto/s";
+        textoFotos.textContent = "Subir foto";
 
     } catch (error) {
         console.log(error);

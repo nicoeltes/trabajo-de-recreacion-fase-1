@@ -83,7 +83,8 @@ async function buscarLocales() {
 
         marcadores.push({
             marcador: marcador,
-            nombre: nombre
+            nombre: nombre,
+            direccion: direccion
         });
     });
 
@@ -118,7 +119,8 @@ async function cargarLocalesDelBack() {
 
             marcadores.push({
                 marcador: marcador,
-                nombre: local.nombre
+                nombre: local.nombre || "Local",
+                direccion: local.direccion || ""
             });
         });
 
@@ -131,19 +133,82 @@ async function cargarLocalesDelBack() {
 
 // BUSCADOR
 
+const campoBusqueda = document.getElementById("busquedaLocal");
+const resultadosBusqueda = document.getElementById("resultadosBusqueda");
+
+// Pasa a minúsculas y saca las tildes, así "cafe" encuentra "Café"
+function normalizar(texto) {
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+// Devuelve los locales cuyo nombre o dirección tienen lo que se escribió
+function localesEncontrados() {
+    const busqueda = normalizar(campoBusqueda.value.trim());
+
+    return marcadores.filter(function(local) {
+        return (
+            normalizar(local.nombre).includes(busqueda) ||
+            normalizar(local.direccion).includes(busqueda)
+        );
+    });
+}
+
+// Muestra solo los marcadores que coinciden con la búsqueda
 function aplicarBusqueda() {
-    const busqueda = document.getElementById("busquedaLocal").value.toLowerCase();
+    const encontrados = localesEncontrados();
 
     marcadores.forEach(function(local) {
-        if (local.nombre.toLowerCase().includes(busqueda)) {
+        if (encontrados.includes(local)) {
             local.marcador.addTo(mapa);
         } else {
             mapa.removeLayer(local.marcador);
         }
     });
+
+    if (campoBusqueda.value.trim() === "") {
+        resultadosBusqueda.textContent = "";
+    } else if (encontrados.length === 0) {
+        resultadosBusqueda.textContent = "No se encontraron locales";
+    } else if (encontrados.length === 1) {
+        resultadosBusqueda.textContent = "1 local encontrado";
+    } else {
+        resultadosBusqueda.textContent = encontrados.length + " locales encontrados";
+    }
 }
 
-document.getElementById("busquedaLocal").addEventListener("input", aplicarBusqueda);
+// Al apretar Enter, el mapa se mueve hasta los locales encontrados
+function irALosResultados() {
+    if (campoBusqueda.value.trim() === "") {
+        return;
+    }
+
+    const encontrados = localesEncontrados();
+
+    if (encontrados.length === 0) {
+        return;
+    }
+
+    if (encontrados.length === 1) {
+        const marcador = encontrados[0].marcador;
+        mapa.setView(marcador.getLatLng(), 17);
+        marcador.openPopup();
+        return;
+    }
+
+    const grupo = L.featureGroup(encontrados.map(local => local.marcador));
+    mapa.fitBounds(grupo.getBounds(), { padding: [80, 80] });
+}
+
+campoBusqueda.addEventListener("input", aplicarBusqueda);
+
+campoBusqueda.addEventListener("keydown", function(evento) {
+    if (evento.key === "Enter") {
+        irALosResultados();
+    }
+});
 
 cargarLocalesDelBack();
 buscarLocales();

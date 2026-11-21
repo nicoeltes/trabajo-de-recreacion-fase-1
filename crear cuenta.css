@@ -350,18 +350,19 @@ form input {
 }
 
 .botoncrear {
-    height: 4rem;
-    width: 7.5rem;
+    height: 5rem;
+    width: 10rem;
     background-color: #014A00;
     border-radius: 0.6rem;
     border: solid white;
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     margin-left: 1.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     right: 26rem;
+    cursor: pointer;
 }
 
 .botoncrear b {
@@ -373,12 +374,12 @@ form input {
 }
 
 .botonvolver {
-    height: 4rem;
-    width: 7.5rem;
+    height: 5rem;
+    width: 10rem;
     background-color: transparent;
     border-radius: 0.6rem;
     border: solid white;
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     margin-left: 1.8rem;
     display: flex;
     justify-content: center;
@@ -386,4 +387,38 @@ form input {
     position: absolute;
     left: 26rem;
     color: white;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.botonvolver:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* MENSAJE DE ERROR O DE CUENTA CREADA */
+
+#mensaje {
+    width: fit-content;
+    margin: 0.5rem auto 1.5rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#mensaje:empty {
+    display: none;
+}
+
+#mensaje.exito {
+    color: #014A00;
+    border: 3px solid #014A00;
+}
+
+#mensaje.error {
+    color: #C00000;
+    border: 3px solid #C00000;
 }

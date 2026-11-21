@@ -153,3 +153,31 @@ body {
 .cambiar:hover {
     opacity: 0.85;
 }
+
+/* MENSAJE DE RESULTADO (contraseña cambiada o error) */
+
+#mensaje {
+    width: fit-content;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#mensaje:empty {
+    display: none;
+}
+
+#mensaje.exito {
+    background-color: white;
+    color: #014A00;
+    border: 3px solid #014A00;
+}
+
+#mensaje.error {
+    background-color: white;
+    color: #C00000;
+    border: 3px solid #C00000;
+}

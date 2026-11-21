@@ -130,7 +130,9 @@ main {
 #fotosReceta {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
+    font-size: 18px;
 }
 
 #fotosReceta img {
@@ -158,15 +160,15 @@ main {
     text-align: center;
     margin-top: -1rem;
     margin-left: -1.5rem;
-    height: 7rem;
+    min-height: 7rem;
 }
 
 .botonCalificar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 23rem;
-    height: 7rem;
+    width: 26rem;
+    min-height: 9rem;
     padding: 15px;
     border: 2px solid white;
     border-radius: 6px;
@@ -182,16 +184,22 @@ main {
 }
 
 .calificacion p {
-    font-size: 22px;
+    font-size: 30px;
     margin: 0;
 }
 
+#mensajeCalificacion {
+    margin: 0.5rem 0 0;
+    font-size: 16px;
+}
+
 #estrellasCalificar button {
-    padding: 0;
+    padding: 0 0.2rem;
     background: none;
     border: none;
     color: #FFD700;
-    font-size: 32px;
+    font-size: 52px;
+    line-height: 1;
     cursor: pointer;
 }
 

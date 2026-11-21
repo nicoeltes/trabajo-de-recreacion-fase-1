@@ -7,6 +7,8 @@ const panelFiltros = document.getElementById("panelFiltros");
 const cerrarFiltros = document.getElementById("cerrarFiltros");
 const limpiarFiltros = document.getElementById("limpiarFiltros");
 
+const buscador = document.getElementById("busqueda");
+
 const opcionesCalificacion = document.querySelectorAll(".opcionesCalificacion input");
 const opcionesRestriccion = document.querySelectorAll(".opcionesRestriccion input");
 
@@ -26,6 +28,8 @@ async function cargarRecetas() {
 
         mostrarRecetas(todasLasRecetas);
 
+        await calcularPromedios();
+
     } catch (error) {
         console.error("Error al cargar las recetas:", error);
 
@@ -34,11 +38,37 @@ async function cargarRecetas() {
     }
 }
 
+// Trae las calificaciones de cada receta y calcula su promedio (de 1 a 5)
+async function calcularPromedios() {
+    await Promise.all(todasLasRecetas.map(async function (receta) {
+        try {
+            const respuesta = await fetch(API + "/recetas/" + receta.id_receta + "/calificaciones");
+            const calificaciones = await respuesta.json();
+
+            if (calificaciones.length === 0) {
+                receta.promedio = 0;
+                return;
+            }
+
+            let suma = 0;
+
+            calificaciones.forEach(function (calificacion) {
+                suma = suma + calificacion.estrellas;
+            });
+
+            receta.promedio = suma / calificaciones.length;
+
+        } catch (error) {
+            receta.promedio = 0;
+        }
+    }));
+}
+
 function mostrarRecetas(recetas) {
     zonaRecetas.innerHTML = "";
 
     if (recetas.length === 0) {
-        zonaRecetas.textContent = "No se encontraron recetas con esos filtros.";
+        zonaRecetas.textContent = "No se encontraron recetas.";
         return;
     }
 
@@ -47,7 +77,7 @@ function mostrarRecetas(recetas) {
         articulo.classList.add("recetas");
 
         articulo.addEventListener("click", function () {
-            localStorage.setItem("recetaSeleccionada", JSON.stringify(receta));
+            localStorage.setItem("idRecetaSeleccionada", receta.id_receta);
             window.location.href = "inforeceta.html";
         });
 
@@ -87,22 +117,29 @@ function aplicarFiltros() {
         .filter(opcion => opcion.checked)
         .map(opcion => opcion.value);
 
-    const calificacionMinima = calificacionesSeleccionadas.length > 0
-        ? Math.min(...calificacionesSeleccionadas)
-        : 0;
+    const textoBuscado = buscador.value.trim().toLowerCase();
 
     const recetasFiltradas = todasLasRecetas.filter(function (receta) {
-        const calificacion = Number(receta.calificacion || 0);
+        const cumpleBusqueda = receta.titulo.toLowerCase().includes(textoBuscado);
+
+        // Cada opción es un intervalo: "1" = de 1 a 2, "2" = de 2 a 3, ..., "4" = de 4 a 5
+        const promedio = receta.promedio || 0;
 
         const cumpleCalificacion =
             calificacionesSeleccionadas.length === 0 ||
-            calificacion >= calificacionMinima;
+            calificacionesSeleccionadas.some(function (desde) {
+                if (desde === 4) {
+                    return promedio >= 4 && promedio <= 5;
+                }
+
+                return promedio >= desde && promedio < desde + 1;
+            });
 
         const cumpleRestriccion =
             restriccionesSeleccionadas.length === 0 ||
             restriccionesSeleccionadas.some(restriccion => receta[restriccion] === true);
 
-        return cumpleCalificacion && cumpleRestriccion;
+        return cumpleBusqueda && cumpleCalificacion && cumpleRestriccion;
     });
 
     mostrarRecetas(recetasFiltradas);
@@ -123,7 +160,10 @@ limpiarFiltros.addEventListener("click", function () {
     opcionesCalificacion.forEach(opcion => opcion.checked = false);
     opcionesRestriccion.forEach(opcion => opcion.checked = false);
 
-    mostrarRecetas(todasLasRecetas);
+    aplicarFiltros();
 });
+
+// BUSCADOR: filtra mientras escribís
+buscador.addEventListener("input", aplicarFiltros);
 
 cargarRecetas();

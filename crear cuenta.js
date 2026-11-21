@@ -8,10 +8,16 @@ const veganismo = document.getElementById("veganismo");
 const vegetarianismo = document.getElementById("vegetarianismo");
 const mensaje = document.getElementById("mensaje");
 
+// Muestra el cartel de abajo: tipo puede ser "exito" o "error"
+function mostrarMensaje(texto, tipo) {
+    mensaje.textContent = texto;
+    mensaje.className = tipo;
+}
+
 formulario.addEventListener("submit", async function(evento) {
     evento.preventDefault();
 
-    mensaje.textContent = "";
+    mostrarMensaje("", "");
 
     const datosCuenta = {
         usuario: usuario.value.trim(),
@@ -29,20 +35,17 @@ formulario.addEventListener("submit", async function(evento) {
         !datosCuenta.contrasena ||
         !datosCuenta.confirmar_contrasena
     ) {
-        mensaje.textContent = "Completá todos los campos.";
-        mensaje.style.color = "red";
+        mostrarMensaje("Completá todos los campos.", "error");
         return;
     }
 
     if (datosCuenta.contrasena !== datosCuenta.confirmar_contrasena) {
-        mensaje.textContent = "Las contraseñas no coinciden.";
-        mensaje.style.color = "red";
+        mostrarMensaje("Las contraseñas no coinciden.", "error");
         return;
     }
 
     if (!celiaco.checked && !veganismo.checked && !vegetarianismo.checked) {
-        mensaje.textContent = "Debés seleccionar al menos una restricción alimenticia.";
-        mensaje.style.color = "red";
+        mostrarMensaje("Tenés que seleccionar al menos una restricción alimenticia.", "error");
         return;
     }
 
@@ -58,19 +61,29 @@ formulario.addEventListener("submit", async function(evento) {
         const resultado = await respuesta.json();
 
         if (resultado.id_usuario === undefined) {
-            mensaje.textContent = resultado.mensaje || "No se pudo crear la cuenta.";
-            mensaje.style.color = "red";
+            mostrarMensaje("No se pudo crear la cuenta.", "error");
             return;
         }
 
-        mensaje.textContent = resultado.mensaje || "¡La cuenta se creó correctamente!";
-        mensaje.style.color = "green";
-        formulario.reset();
+        // Deja la sesión iniciada con la cuenta nueva
+        localStorage.setItem(
+            "usuarioActual",
+            JSON.stringify({
+                id_usuario: resultado.id_usuario,
+                usuario: datosCuenta.usuario,
+                contrasena: datosCuenta.contrasena
+            })
+        );
+
+        mostrarMensaje("¡La cuenta se creó correctamente!", "exito");
+
+        // Cuando se toca "Aceptar", lleva a la página principal
+        alert("¡La cuenta se creó correctamente!");
+        window.location.href = "pagina principal.html";
 
     } catch (error) {
         console.error("Error al crear la cuenta:", error);
 
-        mensaje.textContent = "No se pudo conectar con el servidor.";
-        mensaje.style.color = "red";
+        mostrarMensaje("No se pudo conectar con el servidor.", "error");
     }
 });
