@@ -156,11 +156,7 @@ formulario.addEventListener("submit", async function(event) {
         mensaje.style.color = "green";
 
         formulario.reset();
-<<<<<<< HEAD
-               vistaFotos.innerHTML = "";
-=======
         vistaFotos.innerHTML = "";
->>>>>>> e1dae807dfa96c67b069df179503321c243b7802
         textoFotos.innerHTML = textoOriginalFotos;
 
     } catch (error) {

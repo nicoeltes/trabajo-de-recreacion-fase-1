@@ -217,10 +217,4 @@ body {
     object-fit: contain;
     /* La imagen es blanca: se pasa a negro para que se vea sobre el campo blanco */
     filter: brightness(0);
-<<<<<<< HEAD
-
 }
-
-=======
-}
->>>>>>> e1dae807dfa96c67b069df179503321c243b7802
