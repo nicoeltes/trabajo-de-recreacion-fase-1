@@ -96,6 +96,14 @@ const camposContraseña = document.querySelectorAll('input[type="password"]');
 
 camposContraseña.forEach(function (campo) {
 
+<<<<<<< HEAD
+=======
+    // Si el campo ya tiene su propio botón (como en el perfil), no se agrega otro
+    if (campo.dataset.sinBoton === "true") {
+        return;
+    }
+
+>>>>>>> e1dae807dfa96c67b069df179503321c243b7802
     // Caja que envuelve el campo y el botón
     const caja = document.createElement("span");
     caja.classList.add("campoContraseña");
@@ -131,7 +139,11 @@ camposContraseña.forEach(function (campo) {
         }
     });
 
+<<<<<<< HEAD
 
 });
 
 
+=======
+});
+>>>>>>> e1dae807dfa96c67b069df179503321c243b7802

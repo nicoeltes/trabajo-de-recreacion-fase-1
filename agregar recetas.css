@@ -160,6 +160,12 @@ main {
     display: none;
 }
 
+<<<<<<< HEAD
+=======
+
+/* La miniatura flota a la derecha del botón "Subir foto",
+   así cuando elegís una foto no se mueve nada de la página */
+>>>>>>> e1dae807dfa96c67b069df179503321c243b7802
 #vistaFotos {
     position: absolute;
     top: 0;
@@ -171,7 +177,15 @@ main {
 
 #vistaFotos img {
     width: 85px;
+<<<<<<< HEAD
     height: 68px;}
+=======
+    height: 68px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid white;
+}
+>>>>>>> e1dae807dfa96c67b069df179503321c243b7802
 
 
 .botonSubir {
