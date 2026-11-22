@@ -131,47 +131,66 @@ main {
     padding: 44px 31px 20px;
 }
 
+/* GRILLA DE RECETAS: tarjetas del mismo tamaño, alineadas en filas, con 10px entre ellas */
+
 #zone {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    row-gap: 33px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 15rem);
+    gap: 10px;
+    justify-content: center;
 }
 
+/* Tarjeta rectangular (más ancha que alta) */
 .recetas {
-    width: 5rem;
-    height: 15rem;
+    width: 15rem;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
     border: 2px solid white;
-    border-radius: 6px;
+    border-radius: 8px;
     overflow: hidden;
+    background-color: rgba(1, 74, 0, 0.6);
     color: white;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.recetas:hover {
+    transform: scale(1.03);
 }
 
 .foto {
-    height: 10rem;
+    flex: 1;
+    min-height: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    padding: 0 5px;
+    padding: 0;
+}
+
+.foto img {
+    display: block;
 }
 
 .recetas h2 {
-    height: 25px;
+    height: 2.4rem;
+    flex-shrink: 0;
     margin: 0;
+    padding: 0 0.6rem;
     background-color: white;
     color: black;
-    border-top: 2px solid white;
-    padding-left: 3px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Panel de filtros */

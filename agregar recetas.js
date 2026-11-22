@@ -28,14 +28,20 @@ function agregarListado(textarea) {
 agregarListado(ingredientes);
 agregarListado(instrucciones);
 
+// Texto original del botón ("Subir foto" con el ícono), para volver a ponerlo después
+const textoOriginalFotos = textoFotos.innerHTML;
+
 fotos.addEventListener("change", function() {
     vistaFotos.innerHTML = "";
 
     const archivos = Array.from(fotos.files);
 
-    textoFotos.textContent = archivos.length > 0
-        ? "Foto seleccionada: " + archivos[0].name
-        : "Subir foto";
+    // Texto corto para que entre en el botón
+    if (archivos.length > 0) {
+        textoFotos.textContent = "Foto elegida ✓";
+    } else {
+        textoFotos.innerHTML = textoOriginalFotos;
+    }
 
     archivos.forEach(function(archivo) {
         if (!archivo.type.startsWith("image/")) {
@@ -150,8 +156,8 @@ formulario.addEventListener("submit", async function(event) {
         mensaje.style.color = "green";
 
         formulario.reset();
-        vistaFotos.innerHTML = "";
-        textoFotos.textContent = "Subir foto";
+               vistaFotos.innerHTML = "";
+        textoFotos.innerHTML = textoOriginalFotos;
 
     } catch (error) {
         console.log(error);

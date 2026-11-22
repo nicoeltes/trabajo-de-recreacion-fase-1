@@ -93,6 +93,11 @@ function mostrarRecetas(recetas) {
             imagen.style.height = "100%";
             imagen.style.objectFit = "cover";
 
+                        // Si la foto no existe, se muestra el nombre en vez de una imagen rota
+            imagen.addEventListener("error", function () {
+                foto.textContent = receta.titulo;
+            });
+
             foto.appendChild(imagen);
         } else {
             foto.textContent = receta.titulo;

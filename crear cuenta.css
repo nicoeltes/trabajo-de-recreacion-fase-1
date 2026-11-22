@@ -345,7 +345,7 @@ form input {
 .zonebotones {
     height: 6rem;
     width: 100%;
-    margin-top: -0.93rem;
+    margin-top: 0.2rem;
     position: relative;
 }
 
@@ -400,11 +400,11 @@ form input {
 
 #mensaje {
     width: fit-content;
-    margin: 0.5rem auto 1.5rem;
-    padding: 0.6rem 1.5rem;
+    margin: 0.4rem auto 0.5rem;
+    padding: 0.3rem 1.2rem;
     border-radius: 0.5rem;
     background-color: white;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     text-align: center;
 }
@@ -458,8 +458,4 @@ form input {
     object-fit: contain;
     /* La imagen es blanca: se pasa a negro para que se vea sobre el campo blanco */
     filter: brightness(0);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 66b261c6171630fe3ea2d022e7102bde49413770
