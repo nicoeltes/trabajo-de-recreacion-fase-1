@@ -345,7 +345,7 @@ form input {
 .zonebotones {
     height: 6rem;
     width: 100%;
-    margin-top: 1.5rem;
+    margin-top: 0.2rem;
     position: relative;
 }
 
@@ -397,20 +397,14 @@ form input {
 }
 
 /* MENSAJE DE ERROR O DE CUENTA CREADA */
-/* Flota debajo de los botones, así cuando aparece no los empuja */
 
 #mensaje {
-    position: absolute;
-    top: 5.6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
     width: fit-content;
-    margin: 0;
-    padding: 0.6rem 1.5rem;
+    margin: 0.4rem auto 0.5rem;
+    padding: 0.3rem 1.2rem;
     border-radius: 0.5rem;
     background-color: white;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     text-align: center;
 }
