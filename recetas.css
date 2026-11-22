@@ -188,6 +188,7 @@ main {
     align-items: center;
     font-size: 15px;
     font-weight: bold;
+    /* Si el nombre es muy largo, se corta con "..." */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
